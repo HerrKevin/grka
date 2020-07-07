@@ -5,6 +5,8 @@ import os.path
 import argparse
 import importlib
 import traceback
+import random
+import numpy.random as npr
 
 def grka(problem, solver, args):
     return solver.solve()
@@ -15,12 +17,21 @@ def main():
     parser.add_argument('problem', choices=['roro'], help='Problem type to solve')
     parser.add_argument('solver', choices=['de'], help='Solver to use to solve the problem')
     parser.add_argument('instance', type=str, help='Instance path')
+    parser.add_argument('--max_cpu', type=float, default=1e99, help='Maximum CPU time in seconds')
+    parser.add_argument('--max_wall', type=float, default=1e99, help='Maximum wall time in seconds')
+    parser.add_argument('--max_evals', type=int, default=int(1e15), help='Maximum number of objective function evaluations')
+    parser.add_argument('--threads', type=int, default=1, help='Maximum number of threads to use')
+    parser.add_argument('-s', '--seed', type=int, default=-1, help='Random seed (default = -1, meaning no seed given)')
 
     args, unparsed_args = parser.parse_known_args(sys.argv[1:])
 
     if not os.path.exists(args.instance):
         print(f"Instance path does not exist: {args.instance}")
         sys.exit(1)
+
+    if args.seed >= 0:
+        random.seed(args.seed)
+        npr.seed(args.seed)
 
     prob_mod = f"problem_{args.problem}"
     try:
