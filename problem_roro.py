@@ -1,14 +1,21 @@
 #!/usr/bin/python3
 
 import argparse
+<<<<<<< HEAD
 import numpy as np
 import pandas as pd
 from collections import defaultdict
+=======
+from collections import defaultdict
+import numpy as np
+import pandas as pd
+>>>>>>> 899111d9c7db45952b668f2dc0e901ad020508fa
 
 from problem import Problem
 
 def add_parser_args(parser):
     parser.add_argument('--tugs', type=int, default=2, help='Number of tugs to use')
+<<<<<<< HEAD
 
 def read_instance(inst_path):
     if inst_path.endswith('.dzn'):
@@ -19,6 +26,19 @@ def read_instance(inst_path):
 #             sys.exit(1)
 #         inst = parse_instance_xlsx(inst_path) if not args.labeled else parse_instance_xlsx_labeled(inst_path)
         inst = parse_instance_xlsx_labeled(inst_path)
+=======
+    parser.add_argument('--labeled', action='store_false', default=True, help='Labeled XLSX instance? (new format)')
+
+def read_instance(inst_path, tugs, lbl):
+    if inst_path.endswith('.dzn'):
+        inst = parse_instance_dzn(inst_path)
+    else:
+        if tugs is None:
+            print("xls/xlsx instance detected. --tugs must be specified!")
+            sys.exit(1)
+        inst = parse_instance_xlsx(inst_path) if not lbl else parse_instance_xlsx_labeled(inst_path)
+        inst.kk = tugs
+>>>>>>> 899111d9c7db45952b668f2dc0e901ad020508fa
     return inst
 
 def parse_instance_dzn(path):
@@ -76,6 +96,50 @@ def parse_instance_dzn(path):
             ii += 1
     return inst
 
+<<<<<<< HEAD
+=======
+def parse_instance_xlsx(path):
+    xlf = pd.read_excel(path, sheet_name=None)
+    lldf = xlf['loadlist']
+    uldf = xlf['unloadlist']
+    pdf = xlf['precedence']
+
+    inst = roro_instance()
+
+    inst.nship = lldf['cargo_id'].max()
+    inst.nquay = uldf['cargo_id'].max()
+    inst.labeled = False
+
+    inst.psq = np.zeros((inst.nship, inst.nquay))
+    np.fill_diagonal(inst.psq, 1)
+    inst.dpsq = defaultdict(list)
+    inst.drpsq = defaultdict(list)
+    # TODO Assumes number of trailers on the ship = # on the quay
+    for ii in range(inst.nship):
+        inst.dpsq[ii].append(ii)
+        inst.drpsq[ii].append(ii)
+
+    inst.pss = np.zeros((inst.nship, inst.nship))
+    inst.pqq = np.zeros((inst.nquay, inst.nquay))
+
+    inst.dpss = defaultdict(list)
+    inst.dpqq = defaultdict(list)
+    inst.drpss = defaultdict(list)
+    inst.drpqq = defaultdict(list)
+
+    for row in pdf.itertuples():
+        rf,ra = row.fore - 1, row.aft - 1
+        inst.pqq[rf, ra] = 1
+        inst.pss[ra, rf] = 1
+
+        inst.dpss[ra].append(rf)
+        inst.drpss[rf].append(ra)
+        inst.dpqq[rf].append(ra)
+        inst.drpqq[ra].append(rf)
+
+    return inst
+
+>>>>>>> 899111d9c7db45952b668f2dc0e901ad020508fa
 def parse_instance_xlsx_labeled(path):
     xlf = pd.read_excel(path, sheet_name=None)
     sdf = xlf['position_sequence']
@@ -131,6 +195,11 @@ def parse_instance_xlsx_labeled(path):
 
     return inst
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 899111d9c7db45952b668f2dc0e901ad020508fa
 
 class roro_instance(object):
     def __init__(self):
@@ -153,16 +222,24 @@ class roro_instance(object):
 
 
 class roro(Problem):
+<<<<<<< HEAD
     def __init__(self, inst, args):
         super().__init__(args, inst.nship + inst.nquay)
         self.args = args
         self.inst = inst
         self.inst.kk = args.tugs
+=======
+    def __init__(self, args):
+        self.inst = read_instance(args.instance, args.tugs, args.labeled)
+        super().__init__(args, self.inst.nship + self.inst.nquay)
+
+>>>>>>> 899111d9c7db45952b668f2dc0e901ad020508fa
 
     def batch_evaluate(self, keys, threads=1):
         super().batch_evaluate(keys)
         return [1] * len(keys) # TODO
 
+<<<<<<< HEAD
 #     def greedy(inst, rnd_perturb):
 #         """
 #         Assumes:
@@ -279,4 +356,6 @@ class roro(Problem):
 #         return tt,xx,yy,wsq,wqs,wqq,out
 
 
+=======
+>>>>>>> 899111d9c7db45952b668f2dc0e901ad020508fa
 

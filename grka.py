@@ -5,14 +5,24 @@ import os.path
 import argparse
 import importlib
 import traceback
+import time
 import random
 import numpy.random as npr
+from terminator import create_terminator
 
+<<<<<<< HEAD
 def grka(problem, solver, instance, args):
     return solver.solve(problem, instance, args)
+=======
+def grka(wall_start, problem, solver, args):
+    terminate = create_terminator(wall_start, args)
+    return solver.solve(problem, terminate, args)
+>>>>>>> 899111d9c7db45952b668f2dc0e901ad020508fa
 
 
 def main():
+    wall_start = time.time()
+
     parser = argparse.ArgumentParser(description='Generalized Random-Key Algorithm')
     parser.add_argument('problem', choices=['roro'], help='Problem type to solve')
     parser.add_argument('solver', choices=['de'], help='Solver to use to solve the problem')
@@ -58,6 +68,7 @@ def main():
     args = parser.parse_args(sys.argv[1:])
 
     prob_ = getattr(problem_mod, args.problem)
+<<<<<<< HEAD
     solver_ = getattr(solver_mod, args.solver)
 
     instance = problem_mod.read_instance(args.instance)
@@ -66,8 +77,13 @@ def main():
 
 
     grka(problem, solver, instance, args)
+=======
+    problem = prob_(args)
 
-    print(f"Total evaluations: {problem.evaluations}")
+    best_val, best, evals = grka(wall_start, problem, solver_mod, args)
+>>>>>>> 899111d9c7db45952b668f2dc0e901ad020508fa
+
+    print(f"Total evaluations: {evals}")
 
 
 if __name__ == "__main__":
