@@ -8,8 +8,8 @@ import traceback
 import random
 import numpy.random as npr
 
-def grka(problem, solver, args):
-    return solver.solve()
+def grka(problem, solver, instance, args):
+    return solver.solve(problem, instance, args)
 
 
 def main():
@@ -59,10 +59,13 @@ def main():
 
     prob_ = getattr(problem_mod, args.problem)
     solver_ = getattr(solver_mod, args.solver)
-    problem = prob_(args)
+
+    instance = problem_mod.read_instance(args.instance)
+    problem = prob_(instance, args)
     solver = solver_(problem, args)
 
-    grka(problem, solver, args)
+
+    grka(problem, solver, instance, args)
 
     print(f"Total evaluations: {problem.evaluations}")
 

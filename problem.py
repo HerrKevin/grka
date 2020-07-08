@@ -19,6 +19,4 @@ class Problem(object):
         finally:
             self.eval_lock.release()
 
-    def read_instance(self, inst_path):
-        pass
 

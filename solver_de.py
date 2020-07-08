@@ -20,7 +20,7 @@ class de(Solver):
     def terminate(self):
         return super().terminate()
 
-    def solve(self):
+    def solve(self, problem, instance, args):
         # TODO pydoc
         pop = self.random_population(self.args.pop_size)
         best = pop[0]

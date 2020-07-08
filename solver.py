@@ -20,7 +20,7 @@ class Solver(object):
 
         self.wall_start = time.time()
 
-    def solve(self):
+    def solve(self, problem, instance, args):
         pass
 
     def terminate(self):
