@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 
-
-import argparse
-import numba as nb
 import numpy.random as npr
 import time
+import argparse
 
 def min_max_arg(name, min_val=-1e99, max_val=1e99):
     class MinMaxSize(argparse.Action):
