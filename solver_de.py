@@ -5,12 +5,17 @@ from solver import Solver, min_max_arg
 import copy
 import numpy as np
 import numpy.random as npr
+from loguru import logger
 
 def add_parser_args(parser):
 
     parser.add_argument('--pop_size', type=int, action=min_max_arg('Population', 5), default=50, help='DE population size')
     parser.add_argument('--CR', type=float, action=min_max_arg('CR', 0, 1), default=0.5, help='DE parameter CR')
     parser.add_argument('--F', type=float, action=min_max_arg('F', 0, 2), default=0.5, help='DE parameter CR')
+    parser.add_argument('--batch_mode', action='store_true', default=False, help='Perform fitness evaluations in batches instead of sequentially. If this is false, only one thread can be used.')
+    parser.add_argument('--convergence_eps', type=float, default=1e-4, help='Stop if the average change in objective function over the last convergence_last generations falls below this epsilon')
+    parser.add_argument('--convergence_last', type=float, default=5, help='Stop if the average change in objective function over the last n generations falls below convergence_eps')
+
 
 class de(Solver):
     def __init__(self, problem, args):
@@ -23,9 +28,19 @@ class de(Solver):
     def solve(self, problem, instance, args):
         # TODO pydoc
         pop = self.random_population(self.args.pop_size)
-        best = pop[0]
-        best_val = 1e-99 # TODO minimize vs maximize
-        while not self.terminate():
+        fitness = self.problem.batch_evaluate(pop, self.args.threads)
+
+        last_avgs = [np.mean(fitness), 1e99]
+        conv_val = np.abs(np.mean(np.diff(last_avgs)))
+
+        # TODO minimize vs maximize; right now minimize
+        best_idx = np.argmin(fitness)
+        best = pop[best_idx].copy()
+        best_val = fitness[best_idx]
+        logger.info(f"Initializing best objective to {best_val}.")
+
+        while not self.terminate() and conv_val > args.convergence_eps:
+            ypop = pop.copy()
             for xx in range(len(pop)):
                 rand_three_idx = npr.choice(len(pop), 3)
                 while xx in rand_three_idx:
@@ -39,13 +54,38 @@ class de(Solver):
                 rnums_idx = np.where(rn_bool)[0]
 
                 for rr in rnums_idx:
-                    pop[xx,rr] = aa[rr] + self.args.F * (bb[rr] - cc[rr])
-            ## evaluation step
-            fitness = self.problem.batch_evaluate(pop, self.args.threads)
-            max_fit_idx = np.argmax(fitness)
-            if fitness[max_fit_idx] > best_val:
-                best_val = fitness[max_fit_idx]
-                best = copy.deepcopy(pop[max_fit_idx])
+                    ypop[xx,rr] = aa[rr] + self.args.F * (bb[rr] - cc[rr])
+                    ypop[xx,rr] = min(max(pop[xx,rr], 0.0), 1.0) # Box constraints
+
+                if not args.batch_mode:
+                    yfitness = self.problem.batch_evaluate([pop[xx]], 1)[0]
+                    if yfitness < fitness[xx]:
+                        fitness[xx] = yfitness
+                        pop[xx] = ypop[xx]
+                        if fitness[xx] < best_val:
+                            best_val = fitness[xx]
+                            best = pop[xx].copy()
+                            logger.info(f"New best objective: {best_val}")
+            ## evaluation step (in batch mode; otherwise it's already done)
+            if args.batch_mode:
+                yfitness = self.problem.batch_evaluate(pop, self.args.threads)
+                for xx in range(len(pop)):
+                    if yfitness[xx] < fitness[xx]:
+                        fitness[xx] = yfitness[ff]
+                        pop[xx] = ypop[xx]
+                    if fitness[xx] < best_val:
+                        best_val = fitness[xx]
+                        best = pop[xx].copy()
+                        logger.info(f"New best objective: {best_val}")
+
+            ## Update convergence criterion
+            last_avgs.insert(0, np.mean(fitness))
+            if len(last_avgs) > args.convergence_last:
+                del last_avgs[-1]
+            conv_val = np.abs(np.mean(np.diff(last_avgs)))
+
+        if conv_val < args.convergence_eps:
+            logger.info(f"Exiting due to convergence criteria ({conv_val} > {args.convergence_eps})")
 
         return best_val, best
 

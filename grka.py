@@ -1,15 +1,21 @@
 #!/usr/bin/python3
 
-import sys
-import os.path
+from loguru import logger
 import argparse
 import importlib
-import traceback
-import random
 import numpy.random as npr
+import os.path
+import random
+import sys
+import time
+import traceback
+
 
 def grka(problem, solver, instance, args):
-    return solver.solve(problem, instance, args)
+    logger.info("Solving start")
+    ret = solver.solve(problem, instance, args)
+    logger.info("Solving finished")
+    return ret
 
 
 def main():
@@ -22,11 +28,19 @@ def main():
     parser.add_argument('--max_evals', type=int, default=int(1e15), help='Maximum number of objective function evaluations')
     parser.add_argument('--threads', type=int, default=1, help='Maximum number of threads to use')
     parser.add_argument('-s', '--seed', type=int, default=-1, help='Random seed (default = -1, meaning no seed given)')
+    parser.add_argument('--tuner', action='store_true', default=False, help='Enable tuning mode; no output will be printed to stdout except for ')
 
     args, unparsed_args = parser.parse_known_args(sys.argv[1:])
 
+    logger.remove()
+    if args.tuner:
+        logger.add(sys.stderr, colorize=True, level='ERROR', format="<blue>{time:YY-MM-dd HH:mm:ss.SSS}</blue> |{level}| <green>{module}:{function}:{line}</green> - <level>{message}</level>")
+    else:
+        logger.add(sys.stdout, colorize=True, level=0, format="<blue>{time:YY-MM-dd HH:mm:ss.SSS}</blue> |{level}| <green>{module}:{function}:{line}</green> - <level>{message}</level>")
+#     logger.add(sys.stderr, colorize=True, level='ERROR', backtrace=True, format="Error location: <green>|{file}:{line}|</green> ")
+
     if not os.path.exists(args.instance):
-        print(f"Instance path does not exist: {args.instance}")
+        logger.error(f"Instance path does not exist: {args.instance}")
         sys.exit(1)
 
     if args.seed >= 0:
@@ -37,16 +51,14 @@ def main():
     try:
         problem_mod = importlib.__import__(prob_mod)
     except:
-        print(f"Error loading problem module {prob_mod}")
-        print(traceback.format_exc())
+        logger.exception(f"Error loading problem module {prob_mod}")
         sys.exit(2)
 
     solve_mod = f"solver_{args.solver}"
     try:
         solver_mod = importlib.__import__(solve_mod)
-    except:
-        print(f"Error loading solver module {solve_mod}")
-        print(traceback.format_exc())
+    except ModuleNotFoundError:
+        logger.exception(f"Error loading solver module {solve_mod}")
         sys.exit(3)
 
     # reparse arguments now for specific problem and solver
@@ -64,10 +76,24 @@ def main():
     problem = prob_(instance, args)
     solver = solver_(problem, args)
 
+    logger.info(f"Solving problem {args.problem} with solver {args.solver} on instance {args.instance}")
+    logger.info(f"Max CPU: {args.max_cpu}; Max wall: {args.max_wall}; Max evals: {args.max_evals}")
+    logger.info(f"Seed: {args.seed}")
+    logger.info(f"Threads: {args.threads}")
 
-    grka(problem, solver, instance, args)
+    best_val, best = grka(problem, solver, instance, args)
 
-    print(f"Total evaluations: {problem.evaluations}")
+    logger.info(f"Total evaluations: {problem.evaluations}")
+    logger.info(f"Elapsed wall (s): {time.process_time():.2f}")
+    logger.info(f"Elapsed CPU (s): {time.time() - solver.wall_start:.2f}")
+    logger.info(f"Evals/CPU s: {problem.evaluations / time.process_time():.2f}")
+
+    print()
+    logger.info(f"Best objective found: {best_val}")
+    # TODO print out solution!
+
+    if args.tuner:
+        print(best_val)
 
 
 if __name__ == "__main__":

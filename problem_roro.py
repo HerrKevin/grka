@@ -3,7 +3,9 @@
 import argparse
 import numpy as np
 import pandas as pd
+from pqdict import pqdict
 from collections import defaultdict
+import sys
 
 from problem import Problem
 
@@ -151,6 +153,13 @@ class roro_instance(object):
         self.drpqq = None
         self.drpsq = None
 
+def vd(dd,ll): # vec dict
+    if len(ll) == 0:
+        return []
+    else:
+        arr = np.vectorize(dd.get)(np.array(ll))
+        arr.sort()
+        return arr
 
 class roro(Problem):
     def __init__(self, inst, args):
@@ -161,122 +170,126 @@ class roro(Problem):
 
     def batch_evaluate(self, keys, threads=1):
         super().batch_evaluate(keys)
-        return [1] * len(keys) # TODO
+        # TODO multiprocessing map? Or thread myself to avoid pickle overhead
+        objs = np.zeros(len(keys), dtype=np.int64)
+        for ii,kk in enumerate(keys):
+            objs[ii] = self.greedy(kk)[0]
+        return objs
 
-#     def greedy(inst, rnd_perturb):
-#         """
-#         Assumes:
-#             1. The maximum number of vehicles on the ship at one time is floor(inst.kk / 2)
-#             2. The trailer slots on the vessel are topologically sorted from aft to fore, starboard to port
-#         """
-#         out = ""
+    def greedy(self, key, debug=False):
+        """
+        Assumes:
+            1. The maximum number of vehicles on the ship at one time is floor(inst.kk / 2)
+            2. The trailer slots on the vessel are topologically sorted from aft to fore, starboard to port
+        """
+        out = ""
+        inst = self.inst
+
+        key /= 1.0001 # we can't have any entries equal to 1.0 or the pqueue will fail
+
+        # Heap of dependency counts for trailers on ship
+        heaps = pqdict({fore: (len(aa) + key[fore], fore) for (fore,aa) in inst.drpss.items()})
+        for ii in range(inst.nship):
+            if ii not in inst.drpss:
+                heaps.additem(ii, (0, ii))
 #
-#         # Heap of dependency counts for trailers on ship
-#         heaps = pqdict({fore: (len(aa) + rnd_noise(rnd_perturb), fore) for (fore,aa) in inst.drpss.items()})
-#         for ii in range(inst.nship):
-#             if ii not in inst.drpss:
-#                 heaps.additem(ii, (0, ii))
+        # Heap of dependency counts for trailers on quay
+        # + 1 because it is assumed all trailer slots on the ship are blocked
+        heapq = pqdict({aft: (len(ff) + 1 + key[inst.nship + aft], aft) for (aft,ff) in inst.drpqq.items()})
+        for ii in range(inst.nquay):
+            if ii not in inst.drpqq:
+                heapq.additem(ii, (1 + key[inst.nship + ii], ii))
+
+        max_time = (inst.nship + inst.nquay) + inst.kk
+        wsq = [0] * max_time # vehicles from ship to quay
+        wqs = [0] * max_time # vehicles from quay to ship
+        wqq = [0] * max_time # vehicles waiting at quay
+        # for each trailer on the ship, the time period in which the trailer leaves the ship
+        xx = [-1] * inst.nship
+        # for each trailer on the quay, the time period in which the trailer leaves the quay
+        yy = [-1] * inst.nquay
 #
-#         # Heap of dependency counts for trailers on quay
-#         # + 1 because it is assumed all trailer slots on the ship are blocked
-#         heapq = pqdict({aft: (len(ff) + 1 + rnd_noise(rnd_perturb), aft) for (aft,ff) in inst.drpqq.items()})
-#         for ii in range(inst.nquay):
-#             if ii not in inst.drpqq:
-#                 heapq.additem(ii, (1 + rnd_noise(rnd_perturb), ii))
+        # The first time period always involves moving half the vehicles to the
+        # ship, and the other half doing nothing
+        assert(inst.kk % 2 == 0)
+        hv = inst.kk // 2
+        wqs[0] = hv
+        wqq[0] = hv
 #
-#         max_time = (inst.nship + inst.nquay) + inst.kk
-#         wsq = [0] * max_time # vehicles from ship to quay
-#         wqs = [0] * max_time # vehicles from quay to ship
-#         wqq = [0] * max_time # vehicles waiting at quay
-#         # for each trailer on the ship, the time period in which the trailer leaves the ship
-#         xx = [-1] * inst.nship
-#         # for each trailer on the quay, the time period in which the trailer leaves the quay
-#         yy = [-1] * inst.nquay
-#
-#         # The first time period always involves moving half the vehicles to the
-#         # ship, and the other half doing nothing
-#         assert(inst.kk % 2 == 0)
-#         hv = inst.kk // 2
-#         wqs[0] = hv
-#         wqq[0] = hv
-#
-#         tt = 1
-#         while (len(heaps) > 0 or len(heapq) > 0) and tt < max_time:
-#             unloaded = []
-#             wsq[tt] = hv
-#             for iiu in range(min(len(heaps), wqs[tt - 1])):
-#                 unload, (pval, ignore) = heaps.topitem()
-#                 if int(pval) == 0:
-#                     heaps.pop()
-#
-#     #                 #### DEBUG
-#     #                 if len(heaps) > 0:
-#     #                     tmp, (tp, ignore) = heaps.topitem()
-#     #                     if tp == 0:
-#     #                         print("had option:", inst.slotrev[tmp])
-#     #                 #### /// DEBUG
-#
-#                     unloaded.append(unload)
-#                     xx[unload] = tt
-#                     # TODO if we do the update of heaps here, we can unload trailers
-#                     # that are blocked by another unloaded container. Is this good?
-#                 else:
-#                     wsq[tt] -= 1
-#                     wqq[tt] += 1
-#
-#             if len(heapq) > 0:
-#                 wqs[tt] = min(len(heapq), hv)
-#
-#             for uu in unloaded:
-#                 # Free place on ship for this trailer
-#                 heapq.updateitem(uu, (heapq[uu][0] - 1, uu))
-#                 # Trailers on ship blocked by this trailer
-#                 for blocking in inst.dpss[uu]:
-#                     heaps.updateitem(blocking, (heaps[blocking][0] - 1, blocking))
-#
-#             # count how many loaded trailers have the same destination slot as
-#             # loaded trailers (only max. n-1 trailers can be the same)
-#             n_in_unloaded = 0
-#
-#             add_again = False
-#
-#             loaded = []
-#             for iil in range(min(len(heapq), wqq[tt - 1] + wsq[tt - 1])):
-#                 load, (pval, ignore) = heapq.topitem()
-#                 if load in unloaded:
-#     #                 print(f"Req. Load: {load+1}; Unloading: {np.array(unloaded)+1}")
-#                     n_in_unloaded += 1
-#                 if n_in_unloaded == hv: # Have to pick a different trailer; slot blocked
-#     #                 print(f"n_in_unloaded == hv at {tt}")
-#                     heapq.pop()
-#                     nload, (npval, nignore) = heapq.topitem()
-#     #                 print(f"Choose: {load+1}, ({pval}, {ignore}); Alternative: {nload+1}, ({npval}, {nignore})")
-#                     add_again = True
-#                     taload, (taval, taignore) = load, (pval, ignore)
-#                     load, (pval, ignore) = nload, (npval, nignore)
-#
-#                 if int(pval) == 0:
-#                     heapq.pop()
-#                     loaded.append(load)
-#                     yy[load] = tt
-#
-#                 if add_again:
-#                     heapq.additem(taload, (taval, taignore))
-#                     add_again = False
-#
-#             for ll in loaded:
-#                 for inback in inst.dpqq[ll]:
-#                     heapq.updateitem(inback, (heapq[inback][0] - 1, inback))
-#
-#             if inst.labeled:
-#                 out += f"{tt} unloaded {vd(inst.slotrev, unloaded)} loaded {vd(inst.slotrev, loaded)} (# not unloaded: {len(heaps)}; # not loaded: {len(heapq)})\n"
-#             else:
-#                 out += f"{tt} unloaded {np.array(unloaded) + 1} loaded {np.array(loaded) + 1} (# not unloaded: {len(heaps)}; # not loaded: {len(heapq)})\n"
-#
-#             tt += 1
-#         wsq[tt] = wqs[tt-1] # Remove tugs from ship, if any are left on there
-#
-#         return tt,xx,yy,wsq,wqs,wqq,out
+        tt = 1
+        while (len(heaps) > 0 or len(heapq) > 0) and tt < max_time:
+            unloaded = []
+            wsq[tt] = hv
+            for iiu in range(min(len(heaps), wqs[tt - 1])):
+                unload, (pval, ignore) = heaps.topitem()
+                if int(pval) == 0:
+                    heaps.pop()
+                    unloaded.append(unload)
+                    xx[unload] = tt
+                    # TODO if we do the update of heaps here, we can unload trailers
+                    # that are blocked by another unloaded container. Is this good?
+                else:
+                    wsq[tt] -= 1
+                    wqq[tt] += 1
+
+            if len(heapq) > 0:
+                wqs[tt] = min(len(heapq), hv)
+
+            for uu in unloaded:
+                # Free place on ship for this trailer
+                heapq.updateitem(uu, (heapq[uu][0] - 1, uu))
+                # Trailers on ship blocked by this trailer
+                for blocking in inst.dpss[uu]:
+                    heaps.updateitem(blocking, (heaps[blocking][0] - 1, blocking))
+
+            # count how many loaded trailers have the same destination slot as
+            # loaded trailers (only max. n-1 trailers can be the same)
+            n_in_unloaded = 0
+
+            add_again = False
+
+            loaded = []
+            for iil in range(min(len(heapq), wqq[tt - 1] + wsq[tt - 1])):
+                load, (pval, ignore) = heapq.topitem()
+                if load in unloaded:
+    #                 print(f"Req. Load: {load+1}; Unloading: {np.array(unloaded)+1}")
+                    n_in_unloaded += 1
+                if n_in_unloaded == hv: # Have to pick a different trailer; slot blocked
+    #                 print(f"n_in_unloaded == hv at {tt}")
+                    heapq.pop()
+                    nload, (npval, nignore) = heapq.topitem()
+    #                 print(f"Choose: {load+1}, ({pval}, {ignore}); Alternative: {nload+1}, ({npval}, {nignore})")
+                    add_again = True
+                    taload, (taval, taignore) = load, (pval, ignore)
+                    load, (pval, ignore) = nload, (npval, nignore)
+
+                if int(pval) == 0:
+                    heapq.pop()
+                    loaded.append(load)
+                    yy[load] = tt
+
+                if add_again:
+                    heapq.additem(taload, (taval, taignore))
+                    add_again = False
+
+            for ll in loaded:
+                for inback in inst.dpqq[ll]:
+                    heapq.updateitem(inback, (heapq[inback][0] - 1, inback))
+
+            #if inst.labeled:
+            if debug:
+                out += f"{tt} unloaded {vd(inst.slotrev, unloaded)} loaded {vd(inst.slotrev, loaded)} (# not unloaded: {len(heaps)}; # not loaded: {len(heapq)})\n"
+            #else:
+            #    out += f"{tt} unloaded {np.array(unloaded) + 1} loaded {np.array(loaded) + 1} (# not unloaded: {len(heaps)}; # not loaded: {len(heapq)})\n"
+
+            tt += 1
+        if debug:
+            print(out)
+        if tt >= max_time:
+            return max_time * 10,None,None,None,None,None,"infeasible or error"
+        wsq[tt] = wqs[tt-1] # Remove tugs from ship, if any are left on there
+
+        return tt,xx,yy,wsq,wqs,wqq,out
 
 
 
