@@ -60,6 +60,9 @@ class pso(Solver):
             vel = (vel + ((bpos - pos) * rnd_phi_p) + ((best - pos) * rnd_phi_g)) * chi
             pos = pos + vel
 
+            # Enforce box constraints
+            pos = np.minimum(np.maximum(pos, 0.0), 1.0)
+
             fitness = self.problem.batch_evaluate(pos, self.args.threads)
 
             # Update best known particle position
