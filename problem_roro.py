@@ -13,6 +13,10 @@ def add_parser_args(parser):
     parser.add_argument('--tugs', type=int, default=2, help='Number of tugs to use')
 
 def read_instance(inst_path):
+    if not os.path.exists(inst_path):
+        logger.error(f"Instance path does not exist: {inst_path}")
+        sys.exit(1)
+
     if inst_path.endswith('.dzn'):
         inst = parse_instance_dzn(inst_path)
     else:

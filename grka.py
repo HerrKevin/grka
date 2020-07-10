@@ -39,10 +39,6 @@ def main():
         logger.add(sys.stdout, colorize=True, level=0, format="<blue>{time:YY-MM-dd HH:mm:ss.SSS}</blue> |{level}| <green>{module}:{function}:{line}</green> - <level>{message}</level>")
 #     logger.add(sys.stderr, colorize=True, level='ERROR', backtrace=True, format="Error location: <green>|{file}:{line}|</green> ")
 
-    if not os.path.exists(args.instance):
-        logger.error(f"Instance path does not exist: {args.instance}")
-        sys.exit(1)
-
     if args.seed >= 0:
         random.seed(args.seed)
         npr.seed(args.seed)
