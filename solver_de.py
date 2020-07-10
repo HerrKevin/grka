@@ -29,7 +29,7 @@ class de(Solver):
     def terminate(self):
         return super().terminate()
 
-    def solve(self, problem, instance, args):
+    def solve(self, problem, args):
         # TODO pydoc
         pop = self.random_population(self.args.pop_size)
         fitness = self.problem.batch_evaluate(pop, self.args.threads)
@@ -42,11 +42,12 @@ class de(Solver):
         best_idx = np.argmin(fitness)
         best = pop[best_idx].copy()
         best_val = fitness[best_idx]
-        logger.info(f"(Evals {self.problem.evaluations}; CPU {time.process_time()}:.2f) Initializing best objective to {best_val}.")
+        self.status_new_best(best_val, "initial population")
 
         while not self.terminate() and (not args.convergence_imp or conv_val > args.convergence_eps):
             ypop = pop.copy()
             for xx in range(len(pop)):
+                self.iterations += 1
                 rand_three_idx = npr.choice(len(pop), 3)
                 while xx in rand_three_idx:
                     rand_three_idx = npr.choice(len(pop), 3, replace=False)
@@ -70,10 +71,11 @@ class de(Solver):
                         if fitness[xx] < best_val:
                             best_val = fitness[xx]
                             best = pop[xx].copy()
-                            logger.info(f"(Evals {self.problem.evaluations}; CPU {time.process_time():.2f}) New best objective: {best_val}")
+                            self.status_new_best(best_val)
             ## evaluation step (in batch mode; otherwise it's already done)
             if args.batch_mode:
                 yfitness = self.problem.batch_evaluate(ypop, self.args.threads)
+                # TODO Adjust to use np.where!
                 for xx in range(len(pop)):
                     if yfitness[xx] < fitness[xx]:
                         fitness[xx] = yfitness[xx]
@@ -81,7 +83,7 @@ class de(Solver):
                     if fitness[xx] < best_val:
                         best_val = fitness[xx]
                         best = pop[xx].copy()
-                        logger.info(f"(Evals {self.problem.evaluations}; CPU {time.process_time()}:.2f) New best objective: {best_val}")
+                        self.status_new_best(best_val)
 
             ## Update convergence criterion
             if args.convergence_imp:
