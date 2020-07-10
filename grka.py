@@ -20,7 +20,7 @@ def grka(problem, solver, instance, args):
 
 def main():
     parser = argparse.ArgumentParser(description='Generalized Random-Key Algorithm')
-    parser.add_argument('problem', choices=['roro'], help='Problem type to solve')
+    parser.add_argument('problem', choices=['roro', 'func'], help='Problem type to solve')
     parser.add_argument('solver', choices=['de'], help='Solver to use to solve the problem')
     parser.add_argument('instance', type=str, help='Instance path')
     parser.add_argument('--max_cpu', type=float, default=1e99, help='Maximum CPU time in seconds')
@@ -69,7 +69,7 @@ def main():
     solver_ = getattr(solver_mod, args.solver)
 
     instance = problem_mod.read_instance(args.instance)
-    problem = prob_(instance, args)
+    problem = prob_(args, instance)
     solver = solver_(problem, args)
 
     logger.info(f"Solving problem {args.problem} with solver {args.solver} on instance {args.instance}")

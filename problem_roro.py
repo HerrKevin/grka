@@ -166,9 +166,8 @@ def vd(dd,ll): # vec dict
         return arr
 
 class roro(Problem):
-    def __init__(self, inst, args):
+    def __init__(self, args, inst):
         super().__init__(args, inst.nship + inst.nquay)
-        self.args = args
         self.inst = inst
         self.inst.kk = args.tugs
 
