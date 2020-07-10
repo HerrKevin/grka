@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 
-import numpy.random as npr
-import time
+from loguru import logger
 import argparse
+import numpy.random as npr
+import signal
+import time
 
 def min_max_arg(name, min_val=-1e99, max_val=1e99):
     class MinMaxSize(argparse.Action):
@@ -12,15 +14,23 @@ def min_max_arg(name, min_val=-1e99, max_val=1e99):
             setattr(namespace, self.dest, values)
     return MinMaxSize
 
-
 class Solver(object):
     def __init__(self, problem, args):
         self.args = args
         self.problem = problem
-
         self.wall_start = time.time()
+        self.caught_signal = False
 
-    def solve(self, problem, instance, args):
+        def sighandler_lambda(sig, frame):
+            logger.critical(f"Signal {sig} received; stopping at next opportunity.")
+            return self.signal_handler(sig, frame)
+        signal.signal(signal.SIGINT, sighandler_lambda)
+        signal.signal(signal.SIGTERM, sighandler_lambda)
+
+    def signal_handler(self, sig, frame):
+        self.caught_signal = True
+
+    def solve(self, problem, args):
         pass
 
     def terminate(self):
@@ -30,8 +40,15 @@ class Solver(object):
             return True
         elif self.problem.evaluations > self.args.max_evals:
             return True
+        elif self.caught_signal:
+            return True
         return False
 
     def random_population(self, size):
         return npr.rand(size, self.problem.dimensions)
+
+    def status_new_best(self, val, msg=''):
+        if msg:
+            msg = f'; {msg}'
+        logger.info(f"(Evals {self.problem.evaluations}; CPU {time.process_time():.2f}) New best objective: {val}{msg}")
 
