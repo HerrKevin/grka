@@ -46,8 +46,8 @@ class de(Solver):
 
         while not self.terminate() and (not args.convergence_imp or conv_val > args.convergence_eps):
             ypop = pop.copy()
+            self.iterations += 1
             for xx in range(len(pop)):
-                self.iterations += 1
                 rand_three_idx = npr.choice(len(pop), 3)
                 while xx in rand_three_idx:
                     rand_three_idx = npr.choice(len(pop), 3, replace=False)
