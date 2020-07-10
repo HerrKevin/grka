@@ -42,7 +42,7 @@ class de(Solver):
         best_idx = np.argmin(fitness)
         best = pop[best_idx].copy()
         best_val = fitness[best_idx]
-        logger.info(f"(Evals {self.problem.evaluations}; CPU {time.process_time()}) Initializing best objective to {best_val}.")
+        logger.info(f"(Evals {self.problem.evaluations}; CPU {time.process_time()}:.2f) Initializing best objective to {best_val}.")
 
         while not self.terminate() and (not args.convergence_imp or conv_val > args.convergence_eps):
             ypop = pop.copy()
@@ -70,7 +70,7 @@ class de(Solver):
                         if fitness[xx] < best_val:
                             best_val = fitness[xx]
                             best = pop[xx].copy()
-                            logger.info(f"(Evals {self.problem.evaluations}; CPU {time.process_time()}) New best objective: {best_val}")
+                            logger.info(f"(Evals {self.problem.evaluations}; CPU {time.process_time():.2f}) New best objective: {best_val}")
             ## evaluation step (in batch mode; otherwise it's already done)
             if args.batch_mode:
                 yfitness = self.problem.batch_evaluate(ypop, self.args.threads)
@@ -81,7 +81,7 @@ class de(Solver):
                     if fitness[xx] < best_val:
                         best_val = fitness[xx]
                         best = pop[xx].copy()
-                        logger.info(f"(Evals {self.problem.evaluations}; CPU {time.process_time()}) New best objective: {best_val}")
+                        logger.info(f"(Evals {self.problem.evaluations}; CPU {time.process_time()}:.2f) New best objective: {best_val}")
 
             ## Update convergence criterion
             if args.convergence_imp:
