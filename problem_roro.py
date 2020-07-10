@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 from pqdict import pqdict
 from collections import defaultdict
+import os.path
 import sys
 
 from problem import Problem
@@ -171,15 +172,15 @@ class roro(Problem):
         self.inst = inst
         self.inst.kk = args.tugs
 
-    def batch_evaluate(self, keys, threads=1):
+    def batch_evaluate(self, keys, threads=1, print_sol=False):
         super().batch_evaluate(keys)
         # TODO multiprocessing map? Or thread myself to avoid pickle overhead
         objs = np.zeros(len(keys), dtype=np.int64)
         for ii,kk in enumerate(keys):
-            objs[ii] = self.greedy(kk)[0]
+            objs[ii] = self.greedy(kk, print_sol)[0]
         return objs
 
-    def greedy(self, key, debug=False):
+    def greedy(self, key, print_sol=False):
         """
         Assumes:
             1. The maximum number of vehicles on the ship at one time is floor(inst.kk / 2)
@@ -214,7 +215,7 @@ class roro(Problem):
 #
         # The first time period always involves moving half the vehicles to the
         # ship, and the other half doing nothing
-        assert(inst.kk % 2 == 0)
+#         assert(inst.kk % 2 == 0)
         hv = inst.kk // 2
         wqs[0] = hv
         wqq[0] = hv
@@ -280,13 +281,13 @@ class roro(Problem):
                     heapq.updateitem(inback, (heapq[inback][0] - 1, inback))
 
             #if inst.labeled:
-            if debug:
+            if print_sol:
                 out += f"{tt} unloaded {vd(inst.slotrev, unloaded)} loaded {vd(inst.slotrev, loaded)} (# not unloaded: {len(heaps)}; # not loaded: {len(heapq)})\n"
             #else:
             #    out += f"{tt} unloaded {np.array(unloaded) + 1} loaded {np.array(loaded) + 1} (# not unloaded: {len(heaps)}; # not loaded: {len(heapq)})\n"
 
             tt += 1
-        if debug:
+        if print_sol:
             print(out)
         if tt >= max_time:
             return max_time * 10,None,None,None,None,None,"infeasible or error"

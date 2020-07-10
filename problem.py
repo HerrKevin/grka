@@ -10,7 +10,7 @@ class Problem(object):
         self.dimensions = dimensions
         self.args = args
 
-    def batch_evaluate(self, keys, threads=1):
+    def batch_evaluate(self, keys, threads=1, print_sol=False):
         # Evaluation should proceed without changing the class state (so that
         # batch evaluation is possible)
         self.eval_lock.acquire()

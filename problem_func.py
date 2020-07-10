@@ -17,9 +17,11 @@ class func(Problem):
         super().__init__(args, args.dims)
         self.func = args.func
 
-    def batch_evaluate(self, keys, threads=1):
+    def batch_evaluate(self, keys, threads=1, print_sol=False):
         super().batch_evaluate(keys)
         keys = (keys * 8.0) - 4.0 # put in range -4,4
+        if print_sol:
+            print(keys)
         if self.func == 'rastrigin':
             tmp = np.power(keys, 2) - np.cos(keys * 2 * np.pi)
             return np.sum(tmp, axis=1) + (10 * self.dimensions)

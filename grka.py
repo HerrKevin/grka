@@ -3,6 +3,7 @@
 from loguru import logger
 import argparse
 import importlib
+import numpy as np
 import numpy.random as npr
 import os.path
 import random
@@ -79,14 +80,15 @@ def main():
 
     best_val, best = grka(problem, solver, instance, args)
 
+    logger.info("=== Printing solution ===")
+    problem.batch_evaluate(np.array([best]), print_sol=True)
+    logger.info("=== /Printing solution ===")
+
     logger.info(f"Total evaluations: {problem.evaluations}")
     logger.info(f"Elapsed wall (s): {time.process_time():.2f}")
     logger.info(f"Elapsed CPU (s): {time.time() - solver.wall_start:.2f}")
     logger.info(f"Evals/CPU s: {problem.evaluations / time.process_time():.2f}")
-
-    print()
     logger.info(f"Best objective found: {best_val}")
-    # TODO print out solution!
 
     if args.tuner:
         print(best_val)
