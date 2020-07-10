@@ -30,22 +30,22 @@ class brkga(Solver):
     def terminate(self):
         return super().terminate()
 
-    def solve(self, problem, args):
+    def solve(self):
         pop = self.random_population(self.args.pop_size)
         fitness = self.problem.batch_evaluate(pop, self.args.threads)
 
-        nelite = max(1, int(args.elite * args.pop_size))
-        nmutants = max(1, int(args.mutants * args.pop_size))
-        nnonelite = args.pop_size - nelite
-        recomb = args.pop_size - nelite - nmutants
+        nelite = max(1, int(self.args.elite * self.args.pop_size))
+        nmutants = max(1, int(self.args.mutants * self.args.pop_size))
+        nnonelite = self.args.pop_size - nelite
+        recomb = self.args.pop_size - nelite - nmutants
 
         best_idx = np.argmin(fitness)
         best = pop[best_idx].copy()
         best_val = fitness[best_idx]
         self.status_new_best(best_val, "initial population")
 
-        use_gens = args.generations + 1
-        if args.loop_to_convergence:
+        use_gens = self.args.generations + 1
+        if self.args.loop_to_convergence:
             use_gens = 2147483647
             last_avgs = [np.mean(fitness), 1e99]
             conv_val = np.abs(np.mean(np.diff(last_avgs)))
@@ -63,7 +63,7 @@ class brkga(Solver):
             recomb_nonelite = nonelite[rnonelite_idx,:]
 
             rm = npr.rand(recomb, self.problem.dimensions)
-            recombined = np.where(rm <= args.bias, recomb_elite, recomb_nonelite)
+            recombined = np.where(rm <= self.args.bias, recomb_elite, recomb_nonelite)
 
             mutants = self.random_population(nmutants)
 
@@ -79,17 +79,17 @@ class brkga(Solver):
 
             pop = np.vstack((elite, recomb_mutant))
 
-            if args.loop_to_convergence:
+            if self.args.loop_to_convergence:
                 last_avgs.insert(0, np.mean(fitness))
-                if len(last_avgs) > args.convergence_last:
+                if len(last_avgs) > self.args.convergence_last:
                     del last_avgs[-1]
                 conv_val = np.abs(np.mean(np.diff(last_avgs)))
-                if conv_val < args.convergence_eps:
+                if conv_val < self.args.convergence_eps:
                     break
             if self.terminate():
                 break
-        if args.loop_to_convergence and conv_val < args.convergence_eps:
-            logger.info(f"Exiting due to convergence criteria ({conv_val} < {args.convergence_eps}; {gg} generations)")
+        if self.args.loop_to_convergence and conv_val < self.args.convergence_eps:
+            logger.info(f"Exiting due to convergence criteria ({conv_val} < {self.args.convergence_eps}; {gg} generations)")
 
         return best_val, best
 

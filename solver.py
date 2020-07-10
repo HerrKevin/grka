@@ -30,7 +30,7 @@ class Solver(object):
     def signal_handler(self, sig, frame):
         self.caught_signal = True
 
-    def solve(self, problem, args):
+    def solve(self):
         pass
 
     def terminate(self):

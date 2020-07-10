@@ -24,17 +24,17 @@ def add_parser_args(parser):
 class de(Solver):
     def __init__(self, problem, args):
         super().__init__(problem, args)
-        self.iterations = 0
+        self.iteration = 0
 
     def terminate(self):
         return super().terminate()
 
-    def solve(self, problem, args):
+    def solve(self):
         # TODO pydoc
         pop = self.random_population(self.args.pop_size)
         fitness = self.problem.batch_evaluate(pop, self.args.threads)
 
-        if args.convergence_imp:
+        if self.args.convergence_imp:
             last_avgs = [np.mean(fitness), 1e99]
             conv_val = np.abs(np.mean(np.diff(last_avgs)))
 
@@ -44,9 +44,9 @@ class de(Solver):
         best_val = fitness[best_idx]
         self.status_new_best(best_val, "initial population")
 
-        while not self.terminate() and (not args.convergence_imp or conv_val > args.convergence_eps):
+        while not self.terminate() and (not self.args.convergence_imp or conv_val > self.args.convergence_eps):
             ypop = pop.copy()
-            self.iterations += 1
+            self.iteration += 1
             for xx in range(len(pop)):
                 rand_three_idx = npr.choice(len(pop), 3)
                 while xx in rand_three_idx:
@@ -63,7 +63,7 @@ class de(Solver):
                     ypop[xx,rr] = aa[rr] + self.args.F * (bb[rr] - cc[rr])
                     ypop[xx,rr] = min(max(ypop[xx,rr], 0.0), 1.0) # Box constraints
 
-                if not args.batch_mode:
+                if not self.args.batch_mode:
                     yfitness = self.problem.batch_evaluate(np.array([ypop[xx]]), 1)[0]
                     if yfitness < fitness[xx]:
                         fitness[xx] = yfitness
@@ -71,9 +71,9 @@ class de(Solver):
                         if fitness[xx] < best_val:
                             best_val = fitness[xx]
                             best = pop[xx].copy()
-                            self.status_new_best(best_val)
+                            self.status_new_best(best_val, f"iteration {self.iteration}")
             ## evaluation step (in batch mode; otherwise it's already done)
-            if args.batch_mode:
+            if self.args.batch_mode:
                 yfitness = self.problem.batch_evaluate(ypop, self.args.threads)
                 # TODO Adjust to use np.where!
                 for xx in range(len(pop)):
@@ -86,14 +86,14 @@ class de(Solver):
                         self.status_new_best(best_val)
 
             ## Update convergence criterion
-            if args.convergence_imp:
+            if self.args.convergence_imp:
                 last_avgs.insert(0, np.mean(fitness))
-                if len(last_avgs) > args.convergence_last:
+                if len(last_avgs) > self.args.convergence_last:
                     del last_avgs[-1]
                 conv_val = np.abs(np.mean(np.diff(last_avgs)))
 
-        if args.convergence_imp and conv_val < args.convergence_eps:
-            logger.info(f"Exiting due to convergence criteria ({conv_val} < {args.convergence_eps})")
+        if self.args.convergence_imp and conv_val < self.args.convergence_eps:
+            logger.info(f"Exiting due to convergence criteria ({conv_val} < {self.args.convergence_eps})")
 
         return best_val, best
 

@@ -12,9 +12,9 @@ import time
 import traceback
 
 
-def grka(problem, solver, instance, args):
+def grka(solver):
     logger.info("Solving start")
-    ret = solver.solve(problem, args)
+    ret = solver.solve()
     logger.info("Solving finished")
     return ret
 
@@ -22,7 +22,7 @@ def grka(problem, solver, instance, args):
 def main():
     parser = argparse.ArgumentParser(description='Generalized Random-Key Algorithm')
     parser.add_argument('problem', choices=['roro', 'func'], help='Problem type to solve')
-    parser.add_argument('solver', choices=['de', 'brkga'], help='Solver to use to solve the problem')
+    parser.add_argument('solver', choices=['de', 'brkga', 'pso'], help='Solver to use to solve the problem')
     parser.add_argument('instance', type=str, help='Instance path')
     parser.add_argument('--max_cpu', type=float, default=1e99, help='Maximum CPU time in seconds')
     parser.add_argument('--max_wall', type=float, default=1e99, help='Maximum wall time in seconds')
@@ -78,7 +78,7 @@ def main():
     logger.info(f"Seed: {args.seed}")
     logger.info(f"Threads: {args.threads}")
 
-    best_val, best = grka(problem, solver, instance, args)
+    best_val, best = grka(solver)
 
     logger.info("=== Printing solution ===")
     problem.batch_evaluate(np.array([best]), print_sol=True)
