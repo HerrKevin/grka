@@ -13,9 +13,9 @@ import traceback
 
 
 def grka(solver):
-    logger.info("Solving start")
+    logger.info(f"Solving start (CPU {time.process_time()})")
     ret = solver.solve()
-    logger.info("Solving finished")
+    logger.info(f"Solving finished (CPU {time.process_time()})")
     return ret
 
 
@@ -51,12 +51,14 @@ def main():
         logger.exception(f"Error loading problem module {prob_mod}")
         sys.exit(2)
 
+
     solve_mod = f"solver_{args.solver}"
     try:
         solver_mod = importlib.__import__(solve_mod)
     except ModuleNotFoundError:
         logger.exception(f"Error loading solver module {solve_mod}")
         sys.exit(3)
+
 
     # reparse arguments now for specific problem and solver
 

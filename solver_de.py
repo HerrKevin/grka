@@ -15,7 +15,7 @@ def add_parser_args(parser):
     parser.add_argument('--pop_size', type=int, action=min_max_arg('Population', 5), default=50, help='DE population size')
     parser.add_argument('--CR', type=float, action=min_max_arg('CR', 0, 1), default=0.3, help='DE parameter CR')
     parser.add_argument('--F', type=float, action=min_max_arg('F', 0, 2), default=0.8, help='DE parameter F')
-    parser.add_argument('--batch_mode', action='store_true', default=False, help='Perform fitness evaluations in batches instead of sequentially. If this is false, only one thread can be used.')
+    parser.add_argument('--no_batch_mode', action='store_true', default=False, help='Batch mode performs fitness evaluations in batches instead of sequentially. When this is enabled, batch mode is disabled and things will be slower. Note that batchmode does not use multiple threads; it just vectorizes DE, but that slightly changes the way the algorithm works.')
     parser.add_argument('--convergence_eps', type=float, default=1e-4, help='Stop if the average change in objective function over the last convergence_last generations falls below this epsilon')
     parser.add_argument('--convergence_last', type=float, default=5, help='Stop if the average change in objective function over the last n generations falls below convergence_eps')
     parser.add_argument('--convergence_imp', action='store_true', default=False, help='Stop if the average change in objective function over the last convergence_last generations falls below convergence_eps')
@@ -63,7 +63,7 @@ class de(Solver):
                     ypop[xx,rr] = aa[rr] + self.args.F * (bb[rr] - cc[rr])
                     ypop[xx,rr] = min(max(ypop[xx,rr], 0.0), 1.0) # Box constraints
 
-                if not self.args.batch_mode:
+                if self.args.no_batch_mode:
                     yfitness = self.problem.batch_evaluate(np.array([ypop[xx]]), 1)[0]
                     if yfitness < fitness[xx]:
                         fitness[xx] = yfitness
@@ -73,17 +73,17 @@ class de(Solver):
                             best = pop[xx].copy()
                             self.status_new_best(best_val, f"iteration {self.iteration}")
             ## evaluation step (in batch mode; otherwise it's already done)
-            if self.args.batch_mode:
+            if not self.args.no_batch_mode:
                 yfitness = self.problem.batch_evaluate(ypop, self.args.threads)
-                # TODO Adjust to use np.where!
-                for xx in range(len(pop)):
-                    if yfitness[xx] < fitness[xx]:
-                        fitness[xx] = yfitness[xx]
-                        pop[xx] = ypop[xx]
-                    if fitness[xx] < best_val:
-                        best_val = fitness[xx]
-                        best = pop[xx].copy()
-                        self.status_new_best(best_val)
+                repl_idx = np.where(yfitness < fitness)
+                fitness[repl_idx] = yfitness[repl_idx]
+                pop[repl_idx] = ypop[repl_idx]
+
+                best_idx = np.argmin(fitness)
+                if fitness[best_idx] < best_val:
+                    best_val = fitness[best_idx]
+                    best = pop[best_idx].copy()
+                    self.status_new_best(best_val)
 
             ## Update convergence criterion
             if self.args.convergence_imp:
