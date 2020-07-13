@@ -71,6 +71,8 @@ class hcpso(Solver):
             feat_f = (dg - dmin) / (dmax - dmin)
 
             feat_wbb = (np.min(fitness) - best_val) / best_val
+            # TODO Even with the logs there's still probably a risk of some kind of
+            # overflow here
             feat_cpu_since = np.log(1 + time.process_time() - cpu_last_imp)
             feat_iters_since = np.log(1 + self.iteration - itr_last_imp)
             feat_avg_vel = np.mean(vel)
