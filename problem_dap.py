@@ -208,8 +208,8 @@ class dap(Problem):
                     print(f"###RESULT: Feasible.")
                     print(f"###COST: {np.sum(rcosts)}")
                     for vv in range(inst.nvehicles):
-                        froute = " ".join([str(val) for val in routes[vv]])
-                        print(f"###VEHICLE {vv}: {froute}")
+                        froute = " ".join([str(val) for val in routes[vv][1:-2]])
+                        print(f"###VEHICLE {vv+1}: {froute}")
                     print(f"###CPU-TIME: {time.process_time():.2f}")
 
         return np.sum(rcosts) + penalty
