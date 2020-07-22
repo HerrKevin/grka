@@ -21,7 +21,7 @@ def grka(solver):
 
 def main():
     parser = argparse.ArgumentParser(description='Generalized Random-Key Algorithm')
-    parser.add_argument('problem', choices=['roro', 'func'], help='Problem type to solve')
+    parser.add_argument('problem', choices=['roro', 'func', 'dap'], help='Problem type to solve')
     parser.add_argument('solver', choices=['de', 'brkga', 'pso', 'hcpso'], help='Solver to use to solve the problem')
     parser.add_argument('instance', type=str, help='Instance path')
     parser.add_argument('--max_cpu', type=float, default=1e99, help='Maximum CPU time in seconds')
@@ -32,6 +32,8 @@ def main():
     parser.add_argument('--tuner', action='store_true', default=False, help='Enable tuning mode; no output will be printed to stdout except for ')
 
     args, unparsed_args = parser.parse_known_args(sys.argv[1:])
+
+    # TODO Need to provide CLI help for algs and problems!
 
     logger.remove()
     if args.tuner:
