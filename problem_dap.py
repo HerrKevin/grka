@@ -96,11 +96,18 @@ class dap(Problem):
         for vv in range(inst.nvehicles):
             pass # TODO
 
-    def fits_between(self, ra, first, second, btwn):
+#     def fits_between(self, ra, first, second, btwn):
+#         inst = self.inst
+#         ea_btwn = ra + inst.tt[first, btwn]
+#         ea_second = max(ea_btwn, inst.ee[btwn]) + inst.tt[btwn, second]
+#         return ea_btwn <= inst.ll[btwn] and ea_second <= inst.ll[second]
+    def fits_between(self, ff, ffa, tt, tta, btwn):
         inst = self.inst
-        ea_btwn = ra + inst.tt[first, btwn]
-        ea_second = max(ea_btwn, inst.ee[btwn]) + inst.tt[btwn, second]
-        return ea_btwn <= inst.ll[btwn] and ea_second <= inst.ll[second]
+
+        arr_btwn = max(ffa + inst.tt[ff,btwn], inst.ee[btwn])
+        if arr_btwn <= inst.ll[btwn] and arr_btwn + inst.tt[btwn,tt] <= tta:
+            return True
+        return False
 
     def can_pickup(self, route, rcap, idx, vcap):
         for nn in range(idx + 1, len(route)):
@@ -109,6 +116,7 @@ class dap(Problem):
         return True
 
     def evaluate(self, rkey, print_sol=False):
+        # TODO could add keys that provide extra buffer in the insertion schedule
         key = rkey.copy()
         inst = self.inst
 
@@ -124,6 +132,7 @@ class dap(Problem):
         rcosts = [0] * inst.nn
         rtime = [0] * inst.nn
         rcap = [[0,0] for ii in range(inst.nvehicles)] # num people in car after leaving node
+        prefs = 0
 
         penalty = 0
         try_again = []
@@ -137,16 +146,18 @@ class dap(Problem):
             best_d_idx = -1
             best_delta = 1e99
             for vv in range(inst.nvehicles):
-                for ii, (ff,tt) in enumerate(zip(routes[vv][:-1], routes[vv][1:])):
+                for ii, (ff,tt,ffa,tta) in enumerate(zip(routes[vv][:-1], routes[vv][1:], rarrival[vv][:-1], rarrival[vv][1:])):
                     if self.can_pickup(routes[vv], rcap[vv], ii, inst.vcap[vv]) and \
-                            self.fits_between(rarrival[vv][ii], ff, tt, pickup):
+                            self.fits_between(ff, ffa, tt, tta, pickup):
+#                             self.fits_between(rarrival[vv][ii], ff, tt, pickup):
                         # Pickup insertion is feasible
                         delta = inst.pref[vv,pickup] - inst.tc[ff, tt] + inst.tc[ff, pickup] + inst.tc[pickup, tt]
 
                         # Now try to insert the delivery
-                        for jj, (ffd, ttd) in enumerate(zip([pickup] + routes[vv][ii+1:-1], routes[vv][ii+1:]), start=ii):
-                            ra = rarrival[vv][jj] if ffd != pickup else max(rarrival[vv][ii] + inst.tt[ff, pickup], inst.ee[pickup])
-                            if self.fits_between(ra, ffd, ttd, delivery):
+                        parr = max(ffa + inst.tt[ff, pickup], inst.ee[pickup])
+                        for jj, (ffd, ttd, ffda, ttda) in enumerate(zip([pickup] + routes[vv][ii+1:-1], routes[vv][ii+1:],
+                                                                        [parr] + rarrival[vv][ii+1:-1], rarrival[vv][ii+1:]), start=ii):
+                            if self.fits_between(ffd, ffda, ttd, ttda, delivery):
                                 ddelta = inst.tc[ffd,delivery] + inst.tc[delivery, ttd]
                                 if ffd != pickup:
                                     ddelta -= inst.tc[ffd, ttd]
@@ -165,8 +176,12 @@ class dap(Problem):
                 rarrival[best_vv].insert(best_p_idx + 1, parr)
 
                 routes[best_vv].insert(best_d_idx + 2, delivery)
-                darr = max(rarrival[best_vv][best_d_idx] + inst.tt[routes[best_vv][best_d_idx], pickup], inst.ee[pickup])
+                darr = max(rarrival[best_vv][best_d_idx + 1] + inst.tt[routes[best_vv][best_d_idx + 1], delivery], inst.ee[delivery])
                 rarrival[best_vv].insert(best_d_idx + 2, darr)
+
+#                 print(f"Adding pickup {pickup} and delivery {delivery}")
+#                 print(f"routes after update: {routes[best_vv]}")
+#                 print(f"rarrival after update: {rarrival[best_vv]} (used: {routes[best_vv][best_d_idx+1]}: {rarrival[best_vv][best_d_idx + 1]})")
 
                 rcosts[best_vv] += best_delta
 
@@ -181,6 +196,7 @@ class dap(Problem):
                 for ii in range(best_p_idx + 2, best_d_idx + 2):
                     rcap[best_vv][ii] += 1
 #                 print(f"After: {rcap}\n")
+                prefs += inst.pref[best_vv][pickup]
             elif not reinsert:
                 # Try to put this pd back in once the routes are complete
                 # allowing for shifting of times
@@ -197,10 +213,12 @@ class dap(Problem):
         if print_sol:
             if self.args.no_mm34_output:
                 if penalty > 0:
-                    logger.critical("Infeasible solution follows! (penalty: {penalty})")
+                    logger.critical(f"Infeasible solution follows! (penalty: {penalty})")
                 for vv in range(inst.nvehicles):
                     logger.info(f"Vehicle {vv} (route): {routes[vv]}")
-                    logger.info(f"Vehicle {vv} (arr.): {rarrival}")
+                    logger.info(f"Vehicle {vv} (arr.): {rarrival[vv]}")
+#                     for (ff,tt,ffa,tta) in zip(routes[vv][:-1], routes[vv][1:], rarrival[vv][:-1], rarrival[vv][1:]):
+#                         print(f"Drive from {ff}@{ffa} to {tt}@{tta}; {inst.tt[ff,tt]} ok? {ffa + inst.tt[ff,tt] <= tta}")
             else:
                 if penalty > 0:
                     print("###RESULT: Timeout.")
@@ -212,7 +230,7 @@ class dap(Problem):
                         print(f"###VEHICLE {vv+1}: {froute}")
                     print(f"###CPU-TIME: {time.process_time():.2f}")
 
-        return np.sum(rcosts) + penalty
+        return np.sum(rcosts) + prefs + penalty
 
 
 
