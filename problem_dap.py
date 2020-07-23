@@ -129,8 +129,7 @@ class dap(Problem):
 
         routes = [[0,0] for ii in range(inst.nvehicles)]
         rarrival = [[0, inst.max_time] for ii in range(inst.nvehicles)]
-        rcosts = [0] * inst.nn
-        rtime = [0] * inst.nn
+        rcosts = [0] * inst.nvehicles
         rcap = [[0,0] for ii in range(inst.nvehicles)] # num people in car after leaving node
         prefs = 0
 
@@ -151,15 +150,18 @@ class dap(Problem):
                             self.fits_between(ff, ffa, tt, tta, pickup):
 #                             self.fits_between(rarrival[vv][ii], ff, tt, pickup):
                         # Pickup insertion is feasible
-                        delta = inst.pref[vv,pickup] - inst.tc[ff, tt] + inst.tc[ff, pickup] + inst.tc[pickup, tt]
+                        delta = inst.tc[ff, pickup] + inst.tc[pickup, tt] - inst.tc[ff, tt]
 
                         # Now try to insert the delivery
                         parr = max(ffa + inst.tt[ff, pickup], inst.ee[pickup])
                         for jj, (ffd, ttd, ffda, ttda) in enumerate(zip([pickup] + routes[vv][ii+1:-1], routes[vv][ii+1:],
                                                                         [parr] + rarrival[vv][ii+1:-1], rarrival[vv][ii+1:]), start=ii):
                             if self.fits_between(ffd, ffda, ttd, ttda, delivery):
-                                ddelta = inst.tc[ffd,delivery] + inst.tc[delivery, ttd]
-                                if ffd != pickup:
+                                ddelta = inst.tc[ffd, delivery] + inst.tc[delivery, ttd]
+                                if ffd == pickup:
+                                    # adjust for the fact that the pickup now goes to the delivery rather than the node on the path
+                                    ddelta -= inst.tc[pickup, tt]
+                                else:
                                     ddelta -= inst.tc[ffd, ttd]
                                 if delta + ddelta < best_delta:
                                     best_vv = vv
@@ -224,9 +226,9 @@ class dap(Problem):
                     print("###RESULT: Timeout.")
                 else:
                     print(f"###RESULT: Feasible.")
-                    print(f"###COST: {np.sum(rcosts)}")
+                    print(f"###COST: {np.sum(rcosts) + prefs}")
                     for vv in range(inst.nvehicles):
-                        froute = " ".join([str(val) for val in routes[vv][1:-2]])
+                        froute = " ".join([str(val) for val in routes[vv][1:-1]])
                         print(f"###VEHICLE {vv+1}: {froute}")
                     print(f"###CPU-TIME: {time.process_time():.2f}")
 
