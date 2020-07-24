@@ -85,8 +85,13 @@ class dap_instance(object):
 
 class dap(Problem):
     def __init__(self, args, inst):
-        super().__init__(args, inst.nn)
+        super().__init__(args, inst.nn * 3)
+        # Keys:
+        # 0:inst.nn; PD order
+        # inst.nn:inst.nn*3; position in feasible visit window for pickups and deliveries
         self.inst = inst
+        self.pen = 2 * (self.args.penalty * np.std(inst.tc) + np.mean(inst.tc))
+        logger.info(f"Using penalty {self.pen} per infeasibility.")
 
     def batch_evaluate(self, keys, threads=1, print_sol=False):
         super().batch_evaluate(keys)
@@ -116,11 +121,10 @@ class dap(Problem):
         return True
 
     def evaluate(self, rkey, print_sol=False):
-        # TODO could add keys that provide extra buffer in the insertion schedule
-        key = rkey.copy()
         inst = self.inst
+        key = rkey[:inst.nn] # PD ordering
+        bkey = rkey[inst.nn:] # Placement of a delivery/pickup within the time frame available
 
-        use_pen = 2 * (self.args.penalty * np.std(inst.tc) + np.mean(inst.tc))
 
         vv = 0
         vborder = 1 / inst.nvehicles
@@ -146,8 +150,7 @@ class dap(Problem):
             best_delta = 1e99
             for vv in range(inst.nvehicles):
                 for ii, (ff,tt,ffa,tta) in enumerate(zip(routes[vv][:-1], routes[vv][1:], rarrival[vv][:-1], rarrival[vv][1:])):
-                    if self.can_pickup(routes[vv], rcap[vv], ii, inst.vcap[vv]) and \
-                            self.fits_between(ff, ffa, tt, tta, pickup):
+                    if rcap[vv][ii] + 1 < inst.vcap[vv] and self.fits_between(ff, ffa, tt, tta, pickup):
 #                             self.fits_between(rarrival[vv][ii], ff, tt, pickup):
                         # Pickup insertion is feasible
                         delta = inst.tc[ff, pickup] + inst.tc[pickup, tt] - inst.tc[ff, tt]
@@ -156,6 +159,8 @@ class dap(Problem):
                         parr = max(ffa + inst.tt[ff, pickup], inst.ee[pickup])
                         for jj, (ffd, ttd, ffda, ttda) in enumerate(zip([pickup] + routes[vv][ii+1:-1], routes[vv][ii+1:],
                                                                         [parr] + rarrival[vv][ii+1:-1], rarrival[vv][ii+1:]), start=ii):
+                            if rcap[vv][jj] + 1 > inst.vcap[vv]:
+                                break # no point in looking at more delivery options; we would exceed the capacity after this node
                             if self.fits_between(ffd, ffda, ttd, ttda, delivery):
                                 ddelta = inst.tc[ffd, delivery] + inst.tc[delivery, ttd]
                                 if ffd == pickup:
@@ -169,48 +174,40 @@ class dap(Problem):
                                     best_d_idx = jj
                                     best_delta = delta + ddelta
 
-#             print(f"Routes {routes}")
-#             print(f"{best_vv}, {best_p_idx}, {best_d_idx}, {best_delta}")
             if best_vv >= 0:
                 # Perform insertion
                 routes[best_vv].insert(best_p_idx + 1, pickup)
-                parr = max(rarrival[best_vv][best_p_idx] + inst.tt[routes[best_vv][best_p_idx], pickup], inst.ee[pickup])
-                rarrival[best_vv].insert(best_p_idx + 1, parr)
+                parr_min = max(rarrival[best_vv][best_p_idx] + inst.tt[routes[best_vv][best_p_idx], pickup], inst.ee[pickup])
+
+                parr_max = min(inst.ll[pickup], rarrival[best_vv][best_p_idx + 1]
+                               - inst.tt[pickup, routes[best_vv][best_p_idx + 1]])
+
+                rarrival[best_vv].insert(best_p_idx + 1, parr_min + (parr_max - parr_min) * bkey[pickup - 1])
 
                 routes[best_vv].insert(best_d_idx + 2, delivery)
-                darr = max(rarrival[best_vv][best_d_idx + 1] + inst.tt[routes[best_vv][best_d_idx + 1], delivery], inst.ee[delivery])
-                rarrival[best_vv].insert(best_d_idx + 2, darr)
 
-#                 print(f"Adding pickup {pickup} and delivery {delivery}")
-#                 print(f"routes after update: {routes[best_vv]}")
-#                 print(f"rarrival after update: {rarrival[best_vv]} (used: {routes[best_vv][best_d_idx+1]}: {rarrival[best_vv][best_d_idx + 1]})")
+                darr_min = max(rarrival[best_vv][best_d_idx + 1] + inst.tt[routes[best_vv][best_d_idx + 1], delivery], inst.ee[delivery])
+
+                darr_max = min(inst.ll[delivery], rarrival[best_vv][best_d_idx + 2]
+                               - inst.tt[delivery, routes[best_vv][best_d_idx + 2]])
+
+                rarrival[best_vv].insert(best_d_idx + 2,  darr_min + (darr_max - darr_min) * bkey[delivery - 1])
 
                 rcosts[best_vv] += best_delta
 
-#                 print(f"\nv: {best_vv}; p idx: {best_p_idx}; d idx: {best_d_idx}")
-#                 print(f"Before update: {rcap}")
                 rcap[best_vv].insert(best_d_idx + 1, rcap[best_vv][best_d_idx])
-#                 print(f"(D) Insert {rcap[best_vv][best_d_idx]} at {best_d_idx + 1}")
-#                 print(f"(D) update: {rcap}")
                 rcap[best_vv].insert(best_p_idx + 1, rcap[best_vv][best_p_idx] + 1)
-#                 print(f"(P) Insert {rcap[best_vv][best_p_idx]} at {best_p_idx + 1}")
-#                 print(f"(P) update: {rcap}")
                 for ii in range(best_p_idx + 2, best_d_idx + 2):
                     rcap[best_vv][ii] += 1
-#                 print(f"After: {rcap}\n")
                 prefs += inst.pref[best_vv][pickup]
             elif not reinsert:
                 # Try to put this pd back in once the routes are complete
                 # allowing for shifting of times
                 # try_again.append((True, pd)) # TODO TODO TODO for now just add the penalty
-                penalty += use_pen
+                penalty += self.pen
             else:
                 logger.critical(":-(") # apply a penalty...
-                penalty += use_pen
-
-#             print(f"Routes after {routes}")
-#             print(f"rarrival after {rarrival}")
-#             print(f"rcap after {rcap}")
+                penalty += self.pen
 
         if print_sol:
             if self.args.no_mm34_output:
