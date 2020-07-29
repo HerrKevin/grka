@@ -36,10 +36,10 @@ def main():
     # TODO Need to provide CLI help for algs and problems!
 
     logger.remove()
-    if args.tuner:
-        logger.add(sys.stderr, colorize=True, level='ERROR', format="<blue>{time:YY-MM-dd HH:mm:ss.SSS}</blue> |{level}| <green>{module}:{function}:{line}</green> - <level>{message}</level>")
+    if args.tuner: #  colorize=True,
+        logger.add(sys.stderr, level='ERROR', format="<blue>{time:YY-MM-dd HH:mm:ss.SSS}</blue> |{level}| <green>{module}:{function}:{line}</green> - <level>{message}</level>")
     else:
-        logger.add(sys.stdout, colorize=True, level=0, format="<blue>{time:YY-MM-dd HH:mm:ss.SSS}</blue> |{level}| <green>{module}:{function}:{line}</green> - <level>{message}</level>")
+        logger.add(sys.stdout, level=0, format="<blue>{time:YY-MM-dd HH:mm:ss.SSS}</blue> |{level}| <green>{module}:{function}:{line}</green> - <level>{message}</level>")
 #     logger.add(sys.stderr, colorize=True, level='ERROR', backtrace=True, format="Error location: <green>|{file}:{line}|</green> ")
 
     if args.seed >= 0:

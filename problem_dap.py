@@ -229,6 +229,7 @@ class dap(Problem):
                         print(f"###VEHICLE {vv+1}: {froute}")
                     print(f"###CPU-TIME: {time.process_time():.2f}")
 
+#         print(f"# infeasible PDs: {penalty / self.pen}")
         return np.sum(rcosts) + prefs + penalty
 
 
