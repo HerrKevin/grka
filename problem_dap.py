@@ -140,7 +140,7 @@ class dap(Problem):
         penalty = 0
         try_again = []
 
-        for (reinsert, pd) in itertools.chain(zip([False] * len(pd_sort), pd_sort), try_again):
+        for (reinsert, pd) in itertools.chain(zip([False] * len(pd_sort), pd_sort), []):#try_again):
             pickup = pd + 1 # index 0 is the depot
             delivery = pd + 1 + inst.nn
 
@@ -150,7 +150,7 @@ class dap(Problem):
             best_delta = 1e99
             for vv in range(inst.nvehicles):
                 for ii, (ff,tt,ffa,tta) in enumerate(zip(routes[vv][:-1], routes[vv][1:], rarrival[vv][:-1], rarrival[vv][1:])):
-                    if rcap[vv][ii] + 1 < inst.vcap[vv] and self.fits_between(ff, ffa, tt, tta, pickup):
+                    if rcap[vv][ii] + 1 <= inst.vcap[vv] and self.fits_between(ff, ffa, tt, tta, pickup):
 #                             self.fits_between(rarrival[vv][ii], ff, tt, pickup):
                         # Pickup insertion is feasible
                         delta = inst.tc[ff, pickup] + inst.tc[pickup, tt] - inst.tc[ff, tt]
@@ -203,7 +203,7 @@ class dap(Problem):
             elif not reinsert:
                 # Try to put this pd back in once the routes are complete
                 # allowing for shifting of times
-                # try_again.append((True, pd)) # TODO TODO TODO for now just add the penalty
+                try_again.append((True, pd)) # TODO TODO TODO for now just add the penalty
                 penalty += self.pen
             else:
                 logger.critical(":-(") # apply a penalty...
@@ -229,7 +229,16 @@ class dap(Problem):
                         print(f"###VEHICLE {vv+1}: {froute}")
                     print(f"###CPU-TIME: {time.process_time():.2f}")
 
-#         print(f"# infeasible PDs: {penalty / self.pen}")
+#         if penalty > 0:
+#             print(f"====")
+#             print(f"{routes}")
+#             print(f"{rarrival}")
+#             print(f"# infeasible PDs: {penalty / self.pen}")
+#             taidx = np.array([aa[1]+1 for aa in try_again])
+#             print(taidx)
+#             print(f"{inst.ee[taidx]} ; {inst.ll[taidx]} ;; {inst.ee[taidx + inst.nn]} ; {inst.ll[taidx + inst.nn]}")
+#             print(f"====")
+#             sys.exit(1)
         return np.sum(rcosts) + prefs + penalty
 
 
