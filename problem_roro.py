@@ -220,6 +220,8 @@ class roro(Problem):
         wqs[0] = hv
         wqq[0] = hv
 #
+        if print_sol:
+            out += f"1 unloaded {{}} loaded {{}} (# not unloaded: {len(heaps)}; # not loaded: {len(heapq)}) moving {inst.kk/2} tugs on to ship\n"
         tt = 1
         while (len(heaps) > 0 or len(heapq) > 0) and tt < max_time:
             unloaded = []
@@ -282,7 +284,7 @@ class roro(Problem):
 
             #if inst.labeled:
             if print_sol:
-                out += f"{tt} unloaded {vd(inst.slotrev, unloaded)} loaded {vd(inst.slotrev, loaded)} (# not unloaded: {len(heaps)}; # not loaded: {len(heapq)})\n"
+                out += f"{tt+1} unloaded {vd(inst.slotrev, unloaded)} loaded {vd(inst.slotrev, loaded)} (# not unloaded: {len(heaps)}; # not loaded: {len(heapq)})\n"
             #else:
             #    out += f"{tt} unloaded {np.array(unloaded) + 1} loaded {np.array(loaded) + 1} (# not unloaded: {len(heaps)}; # not loaded: {len(heapq)})\n"
 
