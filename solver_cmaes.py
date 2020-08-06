@@ -98,7 +98,8 @@ class cmaes(Solver):
 
         # TODO check versitile options for hyperreactive version!
 
-        while not es.stop() and not self.terminate():
+#         while not es.stop() and not self.terminate():
+        while not self.terminate():
             solutions = es.ask()
             answers = self.problem.batch_evaluate(np.array(solutions))
             es.tell(solutions, answers)
