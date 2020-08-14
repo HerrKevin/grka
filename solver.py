@@ -45,7 +45,7 @@ class Solver(object):
         return False
 
     def random_population(self, size):
-        return npr.rand(size, self.problem.dimensions)
+        return npr.uniform(0, 1, (size, self.problem.dimensions))
 
     def status_new_best(self, val, msg=''):
         if msg:
