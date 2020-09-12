@@ -186,8 +186,10 @@ class roro(Problem):
             1. The maximum number of vehicles on the ship at one time is floor(inst.kk / 2)
             2. The trailer slots on the vessel are topologically sorted from aft to fore, starboard to port
         """
+
         out = ""
         inst = self.inst
+
 
         key /= 1.0001 # we can't have any entries equal to 1.0 or the pqueue will fail
 
@@ -195,7 +197,7 @@ class roro(Problem):
         heaps = pqdict({fore: (len(aa) + key[fore], fore) for (fore,aa) in inst.drpss.items()})
         for ii in range(inst.nship):
             if ii not in inst.drpss:
-                heaps.additem(ii, (0, ii))
+                heaps.additem(ii, (key[ii], ii))
 #
         # Heap of dependency counts for trailers on quay
         # + 1 because it is assumed all trailer slots on the ship are blocked
@@ -248,35 +250,13 @@ class roro(Problem):
                 for blocking in inst.dpss[uu]:
                     heaps.updateitem(blocking, (heaps[blocking][0] - 1, blocking))
 
-            # count how many loaded trailers have the same destination slot as
-            # loaded trailers (only max. n-1 trailers can be the same)
-            n_in_unloaded = 0
-
-            add_again = False
-
             loaded = []
             for iil in range(min(len(heapq), wqq[tt - 1] + wsq[tt - 1])):
                 load, (pval, ignore) = heapq.topitem()
-                if load in unloaded:
-    #                 print(f"Req. Load: {load+1}; Unloading: {np.array(unloaded)+1}")
-                    n_in_unloaded += 1
-                if n_in_unloaded == hv: # Have to pick a different trailer; slot blocked
-    #                 print(f"n_in_unloaded == hv at {tt}")
-                    heapq.pop()
-                    nload, (npval, nignore) = heapq.topitem()
-    #                 print(f"Choose: {load+1}, ({pval}, {ignore}); Alternative: {nload+1}, ({npval}, {nignore})")
-                    add_again = True
-                    taload, (taval, taignore) = load, (pval, ignore)
-                    load, (pval, ignore) = nload, (npval, nignore)
-
                 if int(pval) == 0:
                     heapq.pop()
                     loaded.append(load)
                     yy[load] = tt
-
-                if add_again:
-                    heapq.additem(taload, (taval, taignore))
-                    add_again = False
 
             for ll in loaded:
                 for inback in inst.dpqq[ll]:
