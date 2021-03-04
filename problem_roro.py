@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+from loguru import logger
 import argparse
 import numpy as np
 import pandas as pd
@@ -13,12 +14,22 @@ from problem import Problem
 def add_parser_args(parser):
     parser.add_argument('--tugs', type=int, default=2, help='Number of tugs to use')
 
+
 def read_instance(inst_path):
-    if not os.path.exists(inst_path):
+    success = False
+    try:
+        mm, nn = [int(ii) for ii in inst_path.split('_')]
+        success = True
+    except:
+        pass
+
+    if not success and not os.path.exists(inst_path):
         logger.error(f"Instance path does not exist: {inst_path}")
         sys.exit(1)
 
-    if inst_path.endswith('.dzn'):
+    if success:
+        inst = parse_instance_simple(mm, nn)
+    elif inst_path.endswith('.dzn'):
         inst = parse_instance_dzn(inst_path)
     else:
 #         if args.tugs is None:
@@ -138,6 +149,52 @@ def parse_instance_xlsx_labeled(path):
 
     return inst
 
+def parse_instance_simple(mm, nn):
+    inst = roro_instance()
+    cc = nn * mm
+    inst.nship = cc
+    inst.nquay = cc
+
+    inst.slots = {cc:cc for cc in range(cc)}
+    inst.slotrev = {ll*nn+rr:f"{ll}_{rr}" for ll in range(mm) for rr in range(nn)}
+    inst.labeled = False
+
+    inst.psq = np.zeros((inst.nship, inst.nquay))
+    np.fill_diagonal(inst.psq, 1)
+    inst.dpsq = defaultdict(list)
+    inst.drpsq = defaultdict(list)
+
+    for ii in range(inst.nship):
+        inst.dpsq[ii].append(ii)
+        inst.drpsq[ii].append(ii)
+
+    inst.pss = np.zeros((inst.nship, inst.nship))
+    inst.pqq = np.zeros((inst.nquay, inst.nquay))
+
+    inst.dpss = defaultdict(list)
+    inst.dpqq = defaultdict(list)
+    inst.drpss = defaultdict(list)
+    inst.drpqq = defaultdict(list)
+
+    for ll in range(mm):
+        for rr in range(nn - 1):
+            pred = ll * nn + rr
+            suc = pred + 1
+
+            inst.pss[suc,pred] = 1
+            inst.dpss[suc].append(pred)
+            inst.drpss[pred].append(suc)
+
+            inst.pqq[pred,suc] = 1
+
+            inst.dpqq[pred].append(suc)
+            inst.drpqq[suc].append(pred)
+
+    inst.is_simple = True
+    inst.mm = mm
+    inst.nn = nn
+    return inst
+
 
 class roro_instance(object):
     def __init__(self):
@@ -157,6 +214,10 @@ class roro_instance(object):
         self.drpss = None
         self.drpqq = None
         self.drpsq = None
+
+        self.is_simple = False
+        self.mm = None
+        self.nn = None
 
 def vd(dd,ll): # vec dict
     if len(ll) == 0:
@@ -190,7 +251,15 @@ class roro(Problem):
         out = ""
         inst = self.inst
 
-
+#         if inst.is_simple:
+#             # Adjust the key to get the result we want
+#             adj = 1.0 / (inst.mm * inst.nn)
+#             key = np.zeros(inst.mm * inst.nn)
+#             key[:inst.nn] = 0
+#             for ll in range(1,inst.mm):
+#                 key[ll * inst.nn:(ll+1) * inst.nn] = np.arange(0, inst.nn * adj, adj) + ll * adj
+#             key = np.hstack([key, key])
+#
         key /= 1.0001 # we can't have any entries equal to 1.0 or the pqueue will fail
 
         # Heap of dependency counts for trailers on ship
