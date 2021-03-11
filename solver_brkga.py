@@ -37,7 +37,7 @@ class brkga(Solver):
         nelite = max(1, int(self.args.elite * self.args.pop_size))
         nmutants = max(1, int(self.args.mutants * self.args.pop_size))
         nnonelite = self.args.pop_size - nelite
-        recomb = self.args.pop_size - nelite - nmutants
+        recomb = max(1, self.args.pop_size - nelite - nmutants)
 
         best_idx = np.argmin(fitness)
         best = pop[best_idx].copy()
