@@ -13,35 +13,7 @@ def add_parser_args(parser):
     # TODO this should really be a subparser for all solvers, then the help
     # command would work correctly
 
-#     # Some of these parameters are tunable, but I'm not sure how to do it yet in
-#     # a nice way
-#     notune = {'AdaptSigma': False,
-#               'CMA_const_trace': False,
-#               'CMA_diagonal': False,
-#               'CMA_eigenmethod': False,
-#               'CMA_elitist': False,
-#               'CMA_mirrors': False,
-#               'CMA_mirrormethod': False,
-#               'CMA_mu': False,
-#               'CMA_sampler': False,
-#               'CMA_sampler_options': False,
-#               'CMA_recombination_weights': False,
-#               'CMA_dampsvec_fac': False,
-#               'CMA_dampsvec_fade': False,
-#               'CMA_teststds': False,
-#               'CMA_stds': False,
-#               'CSA_dampfac ': False,
-#               'CSA_disregard_length': False,
-#               'CSA_clip_length_value': False,
-#               'BoundaryHandler': False,
-#               'bounds': False,
-#               '': False,
-#               '': False,
-#               '': False,
-#
-#               }
-
-    parser.add_argument('--AdaptSigma',                 choices=['True','False','CMAAdaptSigmaTPA','CMAAdaptSigmaCSA','CMAAdaptSigmaNone','CMAAdaptSigmaDistanceProportional','CMAAdaptSigmaMedianImprovement'], default=True, help='CMA population size')
+    parser.add_argument('--AdaptSigma',                 choices=['True','False','CMAAdaptSigmaTPA','CMAAdaptSigmaCSA','CMAAdaptSigmaNone','CMAAdaptSigmaDistanceProportional','CMAAdaptSigmaMedianImprovement'], default='True', help='CMA population size')
     parser.add_argument('--CMA_active',                 type=bool, default=True, help='CMA_active')
     parser.add_argument('--CMA_cmean',                  type=float, default=1, help='CMA_cmean')
     parser.add_argument('--CMA_elitist',                choices=['True','False','initial'], default=True, help='CMA_elitist')

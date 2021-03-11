@@ -17,7 +17,7 @@ def add_parser_args(parser):
 
     parser.add_argument('--ade_alg', choices=['de','ilshade','jade','jso','lshade','lshadecnepsin','mpede','sade','saepsdemmts','shade'], default='ilshade', help='Choice of DE algorithm from pyade')
     parser.add_argument('--pop_size', type=int, action=min_max_arg('Population', 50), default=500, help='DE population size')
-    parser.add_argument('--shade_memory_size', type=int, action=min_max_arg('SHADE Mem size', 2), default=6, help='((i)l)shade(cnepsin)/jso memory size')
+    parser.add_argument('--memory_size', type=int, action=min_max_arg('Mem size', 2), default=6, help='((i)l)shade(cnepsin)/jso memory size')
     parser.add_argument('--de_f', type=float, action=min_max_arg('DE_f', 0.0, 2.0), default=0.5, help='DE f')
     parser.add_argument('--de_cr', type=float, action=min_max_arg('DE_cr', 0.0, 1.0), default=0.9, help='DE f')
     parser.add_argument('--de_cross', choices=['bin','exp'], default=bin, help='DE cross')
@@ -53,7 +53,7 @@ class ade(Solver):
         params['bounds'] = np.array([[0,1]] * self.problem.dimensions)
 
         if alg in ['ilshade', 'lshade', 'shade', 'jso', 'lshadecnepsin']:
-            params['memory_size'] = self.args.shade_memory_size
+            params['memory_size'] = self.args.memory_size
         elif alg == 'de':
             params['f'] = self.args.de_f
             params['cr'] = self.args.de_cr

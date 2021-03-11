@@ -12,6 +12,9 @@ def add_parser_args(parser):
     parser.add_argument('--pop_size', type=int, action=min_max_arg('Population', 5), default=50, help='PSO population size')
     parser.add_argument('--phi_p', type=float, action=min_max_arg('Phi P', 0, 4), default=2.05, help='PSO parameter phi P; phi_p + phi_g > 4')
     parser.add_argument('--phi_g', type=float, action=min_max_arg('Phi G', 0, 4), default=2.05, help='PSO parameter phi G; phi_p + phi_g > 4')
+
+    parser.add_argument('--tune_phi_p', type=float, action=min_max_arg('Phi P', -1, 1), default=-1, help='PSO parameter phi P; if positive, will be combined with tune_phi_g to ensure phi_p + phi_g > 4')
+    parser.add_argument('--tune_phi_g', type=float, action=min_max_arg('Phi P', -1, 1), default=-1, help='PSO parameter phi G; if positive, will be combined with tune_phi_g to ensure phi_p + phi_g > 4')
     parser.add_argument('--convergence_eps', type=float, default=1e-4, help='Stop if the average change in objective function over the last convergence_last generations falls below this epsilon')
     parser.add_argument('--convergence_last', type=float, default=5, help='Stop if the average change in objective function over the last n generations falls below convergence_eps')
     parser.add_argument('--convergence_imp', action='store_true', default=False, help='Stop if the average change in objective function over the last convergence_last generations falls below convergence_eps')
@@ -26,9 +29,18 @@ class pso(Solver):
         return super().terminate()
 
     def solve(self):
-        if self.args.phi_p + self.args.phi_g <= 4:
+        phi_p = self.args.phi_p
+        phi_g = self.args.phi_g
+        if self.args.tune_phi_p >= 0.0 and self.args.tune_phi_g >= 0.0:
+            phi_sum = self.args.tune_phi_p + self.args.tune_phi_g
+            total = 4.0 + (2.0 * phi_sum)
+            phi_p = total * (self.args.phi_p)
+            phi_g = total * (self.args.phi_g)
+
+        if phi_p + phi_g <= 4:
             logger.error(f"Phi p + phi g <= 4 ({self.args.phi_p} + {self.args.phi_g} <= 4), which leads to an invalid constriction factor.")
             sys.exit(5)
+
         phi = self.args.phi_p + self.args.phi_g
         chi = 2.0 / (phi - 2 + np.sqrt((phi * phi) - 4.0 * phi))
         logger.info(f"Constriction factor: {chi}")
