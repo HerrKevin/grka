@@ -2,89 +2,89 @@
 	<node type="and" name="root" domain="[0, 0]" ignore="true">
 		<node type="or" name="solver" prefix="--solver " domain="{brkga,pso,cmaes,random,ade}">
             <node type="and" name="brkga_root" prefix="" domain="[0,0]" or-domain="brkga">
-                <node type="and" name="brkga_pop_size" prefix="--pop_size" domain="[50,5000]" />
-                <node type="and" name="brkga_elite" prefix="--elite" domain="[0.001,1.0]" />
-                <node type="and" name="brkga_mutants" prefix="--mutants" domain="[0.001,1.0]" />
-                <node type="and" name="brkga_bias" prefix="--bias" domain="[0.5,1.0]" />
+                <node type="and" name="brkga_pop_size" prefix="--pop_size " domain="[50,5000]" />
+                <node type="and" name="brkga_elite" prefix="--elite " domain="[0.001,1.0]" />
+                <node type="and" name="brkga_mutants" prefix="--mutants " domain="[0.001,1.0]" />
+                <node type="and" name="brkga_bias" prefix="--bias " domain="[0.5,1.0]" />
             </node>
 
             <node type="and" name="pso_root" prefix="" domain="[0,0]" or-domain="pso">
-                <node type="and" name="pso_pop_size" prefix="--pop_size" domain="[5,5000]" />
-                <node type="and" name="pso_phi_p" prefix="--tune_phi_p" domain="[0.0,1.0]" />
-                <node type="and" name="pso_phi_g" prefix="--tune_phi_g" domain="[0.0,1.0]" />
+                <node type="and" name="pso_pop_size" prefix="--pop_size " domain="[5,5000]" />
+                <node type="and" name="pso_phi_p" prefix="--tune_phi_p " domain="[0.0,1.0]" />
+                <node type="and" name="pso_phi_g" prefix="--tune_phi_g " domain="[0.0,1.0]" />
             </node>
 
             <node type="and" name="cmaes_root" prefix="" domain="[0,0]" or-domain="cmaes">
                 <node type="and" name="cmaes_adaptsigma" prefix="--AdaptSigma" domain="{True,False,CMAAdaptSigmaTPA,CMAAdaptSigmaCSA,CMAAdaptSigmaNone,CMAAdaptSigmaDistanceProportional,CMAAdaptSigmaMedianImprovement}" />
-                <node type="and" name="cmaes_active" prefix="--CMA_active" domain="{True,False}" />
-                <node type="and" name="cmaes_cmean" prefix="--CMA_cmean" domain="[0.001, 10.0]" />
-                <node type="and" name="cmaes_elitist" prefix="--CMA_elitist" domain="{True,False,initial}" />
-                <node type="and" name="cmaes_on" prefix="--CMA_on" domain="[1,10]" />
-                <node type="and" name="cmaes_rankmu" prefix="--CMA_rankmu" domain="[0.001,2.0]" />
-                <node type="and" name="cmaes_rankone" prefix="--CMA_rankone" domain="[0.001,2.0]" />
-                <node type="and" name="cmaes_dampfac" prefix="--CSA_dampfac" domain="[1,20]" />
-                <node type="and" name="cmaes_damp_mueff_exp" prefix="--CSA_damp_mueff_exp" domain="[0.001,1.0]" />
-                <node type="and" name="cmaes_disregard_length" prefix="--CSA_disregard_length" domain="{True,False}" />
-                <node type="and" name="cmaes_squared" prefix="--CSA_squared" domain="{True,False}" />
-                <node type="and" name="cmaes_mean_shift" prefix="--CSA_mean_shift_line_samples" domain="{True,False}" />
+                <node type="and" name="cmaes_active" prefix="--CMA_active " domain="{True,False}" />
+                <node type="and" name="cmaes_cmean" prefix="--CMA_cmean " domain="[0.001, 10.0]" />
+                <node type="and" name="cmaes_elitist" prefix="--CMA_elitist " domain="{True,False,initial}" />
+                <node type="and" name="cmaes_on" prefix="--CMA_on " domain="[1,10]" />
+                <node type="and" name="cmaes_rankmu" prefix="--CMA_rankmu " domain="[0.001,2.0]" />
+                <node type="and" name="cmaes_rankone" prefix="--CMA_rankone " domain="[0.001,2.0]" />
+                <node type="and" name="cmaes_dampfac" prefix="--CSA_dampfac " domain="[1,20]" />
+                <node type="and" name="cmaes_damp_mueff_exp" prefix="--CSA_damp_mueff_exp " domain="[0.001,1.0]" />
+                <node type="and" name="cmaes_disregard_length" prefix="--CSA_disregard_length " domain="{True,False}" />
+                <node type="and" name="cmaes_squared" prefix="--CSA_squared " domain="{True,False}" />
+                <node type="and" name="cmaes_mean_shift" prefix="--CSA_mean_shift_line_samples " domain="{True,False}" />
 
             </node>
 
             <node type="and" name="random_root" prefix="" domain="[0,0]" or-domain="random" />
 
-            <node type="or" name="ade_alg" prefix="" domain="{de,ilshade,jade,jso,lshade,lshadecnepsin,mpede,sade,saepsdemmts,shade}" or-domain="ade">
+            <node type="or" name="ade_alg" prefix="--ade_alg" domain="{de,ilshade,jade,jso,lshade,lshadecnepsin,mpede,sade,saepsdemmts,shade}" or-domain="ade">
                 <node type="and" name="ade_de_root" prefix="" domain="[0,0]" or-domain="de">
-                    <node type="and" name="ade_de_pop_size" prefix="--pop_size" domain="[50,5000]" />
-                    <node type="and" name="ade_de_f" prefix="--de_f" domain="[0.0,2.0]" />
-                    <node type="and" name="ade_de_cr" prefix="--de_cr" domain="[0.0,1.0]" />
-                    <node type="and" name="ade_de_cross" prefix="--de_cross" domain="{bin,exp}" />
+                    <node type="and" name="ade_de_pop_size" prefix="--pop_size " domain="[50,5000]" />
+                    <node type="and" name="ade_de_f" prefix="--de_f " domain="[0.0,2.0]" />
+                    <node type="and" name="ade_de_cr" prefix="--de_cr " domain="[0.0,1.0]" />
+                    <node type="and" name="ade_de_cross" prefix="--de_cross " domain="{bin,exp}" />
                 </node>
 
                 <node type="and" name="ade_ilshade_root" prefix="" domain="[0,0]" or-domain="ilshade">
-                    <node type="and" name="ade_ilshade_pop_size" prefix="--pop_size" domain="[50,5000]" />
-                    <node type="and" name="ade_ilshade_memory" prefix="--memory_size" domain="[2,1000]" />
+                    <node type="and" name="ade_ilshade_pop_size" prefix="--pop_size " domain="[50,5000]" />
+                    <node type="and" name="ade_ilshade_memory" prefix="--memory_size " domain="[2,1000]" />
                 </node>
 
                 <node type="and" name="ade_jade_root" prefix="" domain="[0,0]" or-domain="jade">
-                    <node type="and" name="ade_jade_pop_size" prefix="--pop_size" domain="[50,5000]" />
-                    <node type="and" name="ade_jade_p" prefix="--jade_p" domain="[0.0,1.0]" />
-                    <node type="and" name="ade_jade_c" prefix="--jade_c" domain="[0.0,1.0]" />
+                    <node type="and" name="ade_jade_pop_size" prefix="--pop_size " domain="[50,5000]" />
+                    <node type="and" name="ade_jade_p" prefix="--jade_p " domain="[0.0,1.0]" />
+                    <node type="and" name="ade_jade_c" prefix="--jade_c " domain="[0.0,1.0]" />
                 </node>
 
                 <node type="and" name="ade_jso_root" prefix="" domain="[0,0]" or-domain="jso">
-                    <node type="and" name="ade_jso_pop_size" prefix="--pop_size" domain="[50,5000]" />
-                    <node type="and" name="ade_jso_memory" prefix="--memory_size" domain="[2,1000]" />
+                    <node type="and" name="ade_jso_pop_size" prefix="--pop_size " domain="[50,5000]" />
+                    <node type="and" name="ade_jso_memory" prefix="--memory_size " domain="[2,1000]" />
                 </node>
 
                 <node type="and" name="ade_lshade_root" prefix="" domain="[0,0]" or-domain="lshade">
-                    <node type="and" name="ade_lshade_pop_size" prefix="--pop_size" domain="[50,5000]" />
-                    <node type="and" name="ade_lshade_memory" prefix="--memory_size" domain="[2,1000]" />
+                    <node type="and" name="ade_lshade_pop_size" prefix="--pop_size " domain="[50,5000]" />
+                    <node type="and" name="ade_lshade_memory" prefix="--memory_size " domain="[2,1000]" />
                 </node>
 
                 <node type="and" name="ade_lshadecnepsin_root" prefix="" domain="[0,0]" or-domain="lshadecnepsin">
-                    <node type="and" name="ade_lshadecnepsin_pop_size" prefix="--pop_size" domain="[50,5000]" />
-                    <node type="and" name="ade_lshadecnepsin_memory" prefix="--memory_size" domain="[2,1000]" />
+                    <node type="and" name="ade_lshadecnepsin_pop_size" prefix="--pop_size " domain="[50,5000]" />
+                    <node type="and" name="ade_lshadecnepsin_memory" prefix="--memory_size " domain="[2,1000]" />
                 </node>
 
                 <node type="and" name="ade_mpede_root" prefix="" domain="[0,0]" or-domain="mpede">
-                    <node type="and" name="ade_mpede_pop_size" prefix="--pop_size" domain="[50,5000]" />
-                    <node type="and" name="ade_mpede_lambda1" prefix="--mpede_lambda1" domain="[0.0,1.0]" />
-                    <node type="and" name="ade_mpede_lambda2" prefix="--mpede_lambda2" domain="[0.0,1.0]" />
-                    <node type="and" name="ade_mpede_lambda3" prefix="--mpede_lambda3" domain="[0.0,1.0]" />
-                    <node type="and" name="ade_mpede_lambda4" prefix="--mpede_lambda4" domain="[0.0,1.0]" />
+                    <node type="and" name="ade_mpede_pop_size" prefix="--pop_size " domain="[50,5000]" />
+                    <node type="and" name="ade_mpede_lambda1" prefix="--mpede_lambda1 " domain="[0.0,1.0]" />
+                    <node type="and" name="ade_mpede_lambda2" prefix="--mpede_lambda2 " domain="[0.0,1.0]" />
+                    <node type="and" name="ade_mpede_lambda3" prefix="--mpede_lambda3 " domain="[0.0,1.0]" />
+                    <node type="and" name="ade_mpede_lambda4" prefix="--mpede_lambda4 " domain="[0.0,1.0]" />
                 </node>
 
                 <node type="and" name="ade_sade_root" prefix="" domain="[0,0]" or-domain="sade">
-                    <node type="and" name="ade_sade_pop_size" prefix="--pop_size" domain="[50,5000]" />
+                    <node type="and" name="ade_sade_pop_size" prefix="--pop_size " domain="[50,5000]" />
                 </node>
 
                 <node type="and" name="ade_saepsdemmts_root" prefix="" domain="[0,0]" or-domain="saepsdemmts">
-                    <node type="and" name="ade_saepsdemmts_pop_size" prefix="--pop_size" domain="[50,5000]" />
+                    <node type="and" name="ade_saepsdemmts_pop_size" prefix="--pop_size " domain="[50,5000]" />
                 </node>
 
                 <node type="and" name="ade_shade_root" prefix="" domain="[0,0]" or-domain="shade">
-                    <node type="and" name="ade_shade_pop_size" prefix="--pop_size" domain="[50,5000]" />
-                    <node type="and" name="ade_shade_memory" prefix="--memory_size" domain="[2,1000]" />
+                    <node type="and" name="ade_shade_pop_size" prefix="--pop_size " domain="[50,5000]" />
+                    <node type="and" name="ade_shade_memory" prefix="--memory_size " domain="[2,1000]" />
                 </node>
             </node>
         </node>
