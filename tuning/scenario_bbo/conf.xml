@@ -1,7 +1,7 @@
 <algconf>
 	<node type="and" name="root" domain="[0,0]" ignore="true">
 		<node type="or" name="solver" prefix="--solver " domain="{brkga,pso,cmaes,random,ade}">
-            <node type="and" name="brkga_root" prefix="" domain="" or-domain="{brkga}">
+            <node type="and" name="brkga_root" prefix="" domain="[0,0]" or-domain="{brkga}">
                 <node type="and" name="brkga_pop_size" prefix="--pop_size " domain="[50,5000]" />
                 <node type="and" name="brkga_elite" prefix="--elite " domain="[0.001,1.0]" />
                 <node type="and" name="brkga_mutants" prefix="--mutants " domain="[0.001,1.0]" />
@@ -108,8 +108,10 @@
         <param name="cmaes_active" value="True" />
         <param name="cmaes_cmean" value="1.0" />
         <param name="cmaes_elitist" value="True" />
+        <param name="cmaes_on" value="1" />
         <param name="cmaes_rankmu" value="1.0" />
         <param name="cmaes_rankone" value="1.0" />
+        <param name="cmaes_dampfac" value="1" />
         <param name="cmaes_damp_mueff_exp" value="0.5" />
         <param name="cmaes_disregard_length" value="False" />
         <param name="cmaes_squared" value="False" />
@@ -118,6 +120,18 @@
         <param name="random_root" value="0" />
 
         <param name="ade_alg" value="ilshade" />
+
+        <param name="ade_de_root" value="0" />
+        <param name="ade_ilshade_root" value="0" />
+        <param name="ade_jade_root" value="0" />
+        <param name="ade_jso_root" value="0" />
+        <param name="ade_lshade_root" value="0" />
+        <param name="ade_lshadecnepsin_root" value="0" />
+        <param name="ade_mpede_root" value="0" />
+        <param name="ade_sade_root" value="0" />
+        <param name="ade_saepsdemmts_root" value="0" />
+        <param name="ade_shade_root" value="0" />
+
         <param name="ade_de_pop_size" value="50" />
         <param name="ade_de_f" value="0.5" />
         <param name="ade_de_cr" value="0.9" />
@@ -137,11 +151,11 @@
         <param name="ade_sade_pop_size" value="50" />
         <param name="ade_saepsdemmts_pop_size" value="50" />
         <param name="ade_shade_pop_size" value="50" />
-        <param name="ade_shade_memory_size" value="100" />
-        <param name="ade_lshade_memory_size" value="6" />
-        <param name="ade_ilshade_memory_size" value="6" />
-        <param name="ade_ilshadecnepsin_memory_size" value="5" />
-        <param name="ade_jso_memory_size" value="5" />
+        <param name="ade_shade_memory" value="100" />
+        <param name="ade_lshade_memory" value="6" />
+        <param name="ade_ilshade_memory" value="6" />
+        <param name="ade_lshadecnepsin_memory" value="5" />
+        <param name="ade_jso_memory" value="5" />
 
     </seedgenome>
 </algconf>
