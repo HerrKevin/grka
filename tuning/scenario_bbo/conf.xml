@@ -32,7 +32,7 @@
 
             <node type="and" name="random_root" prefix="--ignore " domain="[0, 0]" or-domain="{random}" />
 
-            <node type="or" name="ade_alg" prefix="--ade_alg" domain="{de,ilshade,jade,jso,lshade,lshadecnepsin,mpede,sade,saepsdemmts,shade}" or-domain="{ade}">
+            <node type="or" name="ade_alg" prefix="--ade_alg " domain="{de,ilshade,jade,jso,lshade,lshadecnepsin,mpede,sade,saepsdemmts,shade}" or-domain="{ade}">
                 <node type="and" name="ade_de_root" prefix="--ignore " domain="[0,0]" or-domain="{de}">
                     <node type="and" name="ade_de_pop_size" prefix="--pop_size " domain="[50,5000]" />
                     <node type="and" name="ade_de_f" prefix="--de_f " domain="[0.0,2.0]" />
@@ -88,11 +88,7 @@
                 </node>
             </node>
         </node>
-    </node>
-
-    <constraints>
-        <cstr><![CDATA[brkga_elite + brkga_mutants <= 1.0]]></cstr>
-    </constraints>
+    </node> 
 
     <seedgenome>
         <param name="root" value="0" />
@@ -163,4 +159,7 @@
         <param name="ade_jso_memory" value="5" />
 
     </seedgenome>
+    <constraints>
+        <cstr><![CDATA[brkga_elite + brkga_mutants <= 1.0]]></cstr>
+    </constraints>
 </algconf>
