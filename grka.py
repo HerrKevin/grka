@@ -30,6 +30,7 @@ def main():
     parser.add_argument('--threads', type=int, default=1, help='Maximum number of threads to use')
     parser.add_argument('-s', '--seed', type=int, default=-1, help='Random seed (default = -1, meaning no seed given)')
     parser.add_argument('--tuner', action='store_true', default=False, help='Enable tuning mode; no output will be printed to stdout except for ')
+    parser.add_argument('--ignore', type=str, default="", help='Used for tuning, just ignore it.')
 
     args, unparsed_args = parser.parse_known_args(sys.argv[1:])
 
