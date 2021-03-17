@@ -88,6 +88,9 @@ def main():
     except Exception as ee:
         if args.tuner:
             print(f"GGA CRASHED 9999")
+            from datetime import datetime
+            with open(f'tmp-{int(datetime.now().timestamp())}', 'r') as fp:
+                fp.write(f'GGA crash: {" ".join(sys.argv)}')
         else:
             raise ee
 
