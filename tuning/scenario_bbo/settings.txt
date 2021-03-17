@@ -6,7 +6,7 @@ generations = 100
 
 min_generations = 80
 max_age = 3
-eval_group_size = 10
+eval_group_size = 16
 eval_time_limit = 1280
 tuner_rt_limit = 9223372036
 tuner_evals_limit = 2147483648
@@ -23,7 +23,7 @@ objective = sum
 cancel = original
 
 instances_selector = rlinear
-instances_dir = instances/
+instances_dir = 
 instances_min = 3
 instances_max = 28
 instances_gen_max = 40
