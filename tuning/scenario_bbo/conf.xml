@@ -15,7 +15,7 @@
             </node>
 
             <node type="and" name="cmaes_root" prefix="--ignore "  domain="[0, 0]" or-domain="{cmaes}">
-                <node type="and" name="cmaes_adaptsigma" prefix="--AdaptSigma" domain="{True,False,CMAAdaptSigmaTPA,CMAAdaptSigmaCSA,CMAAdaptSigmaNone,CMAAdaptSigmaDistanceProportional,CMAAdaptSigmaMedianImprovement}" />
+                <node type="and" name="cmaes_adaptsigma" prefix="--AdaptSigma " domain="{True,False,CMAAdaptSigmaTPA,CMAAdaptSigmaCSA,CMAAdaptSigmaNone,CMAAdaptSigmaDistanceProportional,CMAAdaptSigmaMedianImprovement}" />
                 <node type="and" name="cmaes_active" prefix="--CMA_active " domain="{True,False}" />
                 <node type="and" name="cmaes_cmean" prefix="--CMA_cmean " domain="[0.001, 10.0]" />
                 <node type="and" name="cmaes_elitist" prefix="--CMA_elitist " domain="{True,False,initial}" />
@@ -26,7 +26,7 @@
                 <node type="and" name="cmaes_damp_mueff_exp" prefix="--CSA_damp_mueff_exp " domain="[0.001,1.0]" />
                 <node type="and" name="cmaes_disregard_length" prefix="--CSA_disregard_length " domain="{True,False}" />
                 <node type="and" name="cmaes_squared" prefix="--CSA_squared " domain="{True,False}" />
-                <node type="and" name="cmaes_mean_shift" prefix="--CSA_mean_shift_line_samples " domain="{True,False}" />
+                <node type="and" name="cmaes_mean_shift" prefix="--mean_shift_line_samples " domain="{True,False}" />
 
             </node>
 
