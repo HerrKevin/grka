@@ -82,7 +82,13 @@ def main():
     logger.info(f"Seed: {args.seed}")
     logger.info(f"Threads: {args.threads}")
 
-    best_val, best = grka(solver)
+    try:
+        best_val, best = grka(solver)
+    except Exception as ee:
+        if args.tuner:
+            print(f"GGA CRASHED 9999")
+        else:
+            raise ee
 
     logger.info("=== Printing solution ===")
     problem.batch_evaluate(np.array([best]), print_sol=True)
@@ -95,7 +101,7 @@ def main():
     logger.info(f"Best objective found: {best_val}")
 
     if args.tuner:
-        print(best_val)
+        print(f"GGA SUCCESS {best_val}")
 
 
 if __name__ == "__main__":
