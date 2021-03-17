@@ -89,6 +89,11 @@
             </node>
         </node>
     </node>
+
+    <constraints>
+        <cstr><![CDATA[brkga_elite + brkga_mutants <= 1.0]]></cstr>
+    </constraints>
+
     <seedgenome>
         <param name="root" value="0" />
         <param name="solver" value="cmaes" />
