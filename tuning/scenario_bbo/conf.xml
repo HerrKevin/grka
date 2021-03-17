@@ -18,7 +18,6 @@
                 <node type="and" name="cmaes_adaptsigma" prefix="--AdaptSigma " domain="{True,False,CMAAdaptSigmaTPA,CMAAdaptSigmaCSA,CMAAdaptSigmaNone,CMAAdaptSigmaDistanceProportional,CMAAdaptSigmaMedianImprovement}" />
                 <node type="and" name="cmaes_active" prefix="--CMA_active " domain="{True,False}" />
                 <node type="and" name="cmaes_cmean" prefix="--CMA_cmean " domain="[0.001, 10.0]" />
-                <node type="and" name="cmaes_elitist" prefix="--CMA_elitist " domain="{True,False,initial}" />
                 <node type="and" name="cmaes_on" prefix="--CMA_on " domain="[1,10]" />
                 <node type="and" name="cmaes_rankmu" prefix="--CMA_rankmu " domain="[0.001,2.0]" />
                 <node type="and" name="cmaes_rankone" prefix="--CMA_rankone " domain="[0.001,2.0]" />
@@ -108,7 +107,6 @@
         <param name="cmaes_adaptsigma" value="True" />
         <param name="cmaes_active" value="True" />
         <param name="cmaes_cmean" value="1.0" />
-        <param name="cmaes_elitist" value="True" />
         <param name="cmaes_on" value="1" />
         <param name="cmaes_rankmu" value="1.0" />
         <param name="cmaes_rankone" value="1.0" />
