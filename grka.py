@@ -96,7 +96,8 @@ def main():
             raise ee
 
     logger.info("=== Printing solution ===")
-    problem.batch_evaluate(np.array([best]), print_sol=True)
+    if not args.tuner:
+        problem.batch_evaluate(np.array([best]), print_sol=True)
     logger.info("=== /Printing solution ===")
 
     logger.info(f"Total evaluations: {problem.evaluations}")
