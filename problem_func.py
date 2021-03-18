@@ -31,7 +31,7 @@ class func(Problem):
         try:
             res = self.func(keys)
         except Warning as ww:
-            raise ValueException("Invalid calculation in objective function: {ww.message}; keys: {keys}")
+            raise ValueException(f"Invalid calculation in objective function: {ww.message}; keys: {keys}")
 
         if self.args.use_gap:
             res = np.abs((res - self.opt) / self.opt)

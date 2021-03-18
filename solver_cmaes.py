@@ -6,6 +6,8 @@ import numpy.random as npr
 import sys
 import time
 import cma
+import warnings
+import sys
 
 from solver import Solver, min_max_arg
 
@@ -40,6 +42,7 @@ class cmaes(Solver):
     def __init__(self, problem, args):
         super().__init__(problem, args)
         self.iteration = 0
+        warnings.filterwarnings('error')
 
     def terminate(self):
         return super().terminate()
@@ -47,11 +50,11 @@ class cmaes(Solver):
     def solve(self):
         best_val = 1e99
         topts = ['AdaptSigma', 'CMA_active', 'CMA_cmean', 'CMA_elitist',
-                 'CMA_on', 'CMA_rankmu', 'CMA_rankone', 'CSA_dampfac',
-                 'CSA_damp_mueff_exponent', 'CSA_disregard_length',
-                 'CSA_squared', 'maxiter', 'mean_shift_line_samples',
-                 'tolconditioncov', 'tolfacupx', 'tolflatfitness', 'tolfun',
-                 'tolfunhist', 'tolfunrel', 'tolx', 'CMA_mirrormethod']
+                'CMA_on', 'CMA_rankmu', 'CMA_rankone', 'CSA_dampfac',
+                'CSA_damp_mueff_exponent', 'CSA_disregard_length',
+                'CSA_squared', 'maxiter', 'mean_shift_line_samples',
+                'tolconditioncov', 'tolfacupx', 'tolflatfitness', 'tolfun',
+                'tolfunhist', 'tolfunrel', 'tolx', 'CMA_mirrormethod']
 
         opts = cma.CMAOptions()
         for to in topts:
@@ -68,21 +71,33 @@ class cmaes(Solver):
 
         es = cma.CMAEvolutionStrategy([0.5] * self.problem.dimensions, sigma0, opts)
 
-        # TODO check versitile options for hyperreactive version!
+        try:
+            # TODO check versitile options for hyperreactive version!
 
-#         while not es.stop() and not self.terminate():
-        while not self.terminate():
-            solutions = es.ask()
-            answers = self.problem.batch_evaluate(np.array(solutions))
-            es.tell(solutions, answers)
+    #         while not es.stop() and not self.terminate():
+            while not self.terminate():
+                solutions = es.ask()
+                answers = self.problem.batch_evaluate(np.array(solutions))
+                es.tell(solutions, answers)
+                res = es.result
+                if res.fbest < best_val:
+                    best_val = res.fbest
+                    self.status_new_best(best_val)
+                #es.disp()
             res = es.result
-            if res.fbest < best_val:
-                best_val = res.fbest
-                self.status_new_best(best_val)
-            #es.disp()
-        res = es.result
 
-        return res.fbest, res.xbest
+            return res.fbest, res.xbest
+        except Warning as ww:
+            if self.args.tuner:
+                # An error happened, just return what we have
+                return res.fbest, res.xbest
+#                 res = es.result
+#                 print(f"GGA CRASHED {res.fbest}")
+#                 sys.exit(1)
+            else:
+                raise ValueError(f"Warning raised in CMA-ES: {ww.message}")
+
+
 
 
 
