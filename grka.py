@@ -107,6 +107,8 @@ def main():
     logger.info(f"Best objective found: {best_val}")
 
     if args.tuner:
+        if best_val is np.nan:
+            best_val = 9999 if args.use_gap else 1e99
         print(f"GGA SUCCESS {best_val}")
 
 
