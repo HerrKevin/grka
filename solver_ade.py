@@ -8,6 +8,7 @@ import numpy.random as npr
 import sys
 import time
 import importlib as il
+import warnings
 
 from solver import Solver, min_max_arg
 
@@ -38,6 +39,7 @@ class ade(Solver):
         super().__init__(problem, args)
         self.iteration = 0
         self.best_fit = 1e99
+        warnings.filterwarnings('error')
 
     def terminate(self):
         return super().terminate()
@@ -75,7 +77,14 @@ class ade(Solver):
 
         params['callback'] = lambda **vv: self.callback(**vv)
         params['terminate_callback'] = self.terminate
-        sol, fit = solver_.apply(**params)
+        try:
+            sol, fit = solver_.apply(**params)
+        except Warning as ww:
+            if self.args.tuner:
+                print(f"GGA SUCCESS {self.best_fit}")
+                sys.exit(1)
+            else:
+                raise ValueError(f"Warning in pyade: {ww}")
 
         return fit, sol
 
