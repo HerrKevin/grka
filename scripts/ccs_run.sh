@@ -36,7 +36,7 @@ if [ ${master} -eq 1 ]; then
     "${PYDGGA}" dgga -s ${SCENARIO} --slots 16 --num-workers "${DGGA_NODES}" --worker-script scripts/fake_worker.sh --port "${DGGA_PORT}" --verbose DEBUG &> ${OUT_FILE}
 
 else
-    sleep 10 # wait 10 seconds before starting the workers so the master has time to start
+    sleep 15 # wait 15 seconds before starting the workers so the master has time to start
     master_ip=$(python3 scripts/ccs_get_master_ip.py ${CCS_MAPPING})
 
     "${PYDGGA}" dggaw --address "${master_ip}" --slots 16 --port "${DGGA_PORT}" --verbose DEBUG &> ${WORKER_OUT_DIR}/$(basename ${OUT_FILE})_worker_$(hostname)_${CCS_REQID}.out

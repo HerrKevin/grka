@@ -12,5 +12,5 @@ finst=${sp[1]}
 seed=${sp[2]}
 
 
-python3 grka.py func /dev/null --func ${func} --finst ${finst} --seed ${seed} --tuner --use_gap --max_evals 10000 "${@:4}"
+python3 grka.py func /dev/null --func ${func} --finst ${finst} --dims 20 --seed ${seed} --max_cpu 60 --tuner --use_gap --max_evals 10000 "${@:4}"
 
