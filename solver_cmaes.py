@@ -95,7 +95,7 @@ class cmaes(Solver):
 #                 print(f"GGA CRASHED {res.fbest}")
 #                 sys.exit(1)
             else:
-                raise ValueError(f"Warning raised in CMA-ES: {ww.message}")
+                raise ValueError(f"Warning raised in CMA-ES: {ww}")
 
 
 
