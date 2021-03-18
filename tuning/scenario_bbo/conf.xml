@@ -17,7 +17,7 @@
             <node type="and" name="cmaes_root" prefix="--ignore "  domain="[0, 0]" or-domain="{cmaes}">
                 <node type="and" name="cmaes_adaptsigma" prefix="--AdaptSigma " domain="{True,False,CMAAdaptSigmaTPA,CMAAdaptSigmaCSA,CMAAdaptSigmaNone,CMAAdaptSigmaDistanceProportional,CMAAdaptSigmaMedianImprovement}" />
                 <node type="and" name="cmaes_active" prefix="--CMA_active " domain="{True,False}" />
-                <node type="and" name="cmaes_cmean" prefix="--CMA_cmean " domain="[0.001, 10.0]" />
+                <node type="and" name="cmaes_cmean" prefix="--CMA_cmean " domain="[0.001, 2.0]" />
                 <node type="and" name="cmaes_on" prefix="--CMA_on " domain="[1,10]" />
                 <node type="and" name="cmaes_rankmu" prefix="--CMA_rankmu " domain="[0.001,2.0]" />
                 <node type="and" name="cmaes_rankone" prefix="--CMA_rankone " domain="[0.001,2.0]" />
