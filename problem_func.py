@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import sys
 import cma.bbobbenchmarks as bn
+import warnings
 
 from problem import Problem
 
@@ -20,13 +21,18 @@ class func(Problem):
     def __init__(self, args, inst):
         super().__init__(args, args.dims)
         self.func, self.opt = bn.instantiate(args.func, args.finst)
+        warnings.filterwarnings('error')
 
     def batch_evaluate(self, keys, threads=1, print_sol=False):
         super().batch_evaluate(keys)
         keys = (keys * 8.0) - 4.0 # put in range -4,4
         if print_sol:
             print(keys)
-        res = self.func(keys)
+        try:
+            res = self.func(keys)
+        except Warning as ww:
+            raise ValueException("Invalid calculation in objective function: {ww.message}; keys: {keys}")
+
         if self.args.use_gap:
             res = np.abs((res - self.opt) / self.opt)
         return res
