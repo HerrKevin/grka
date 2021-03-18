@@ -60,13 +60,13 @@ class ade(Solver):
             params['cross'] = self.args.cross
         elif alg in ['jade', 'mpede']:
             if self.args.jade_p < 1e-3:
-                params['p'] = max(0.05, 3.0 / self.pop_size)
+                params['p'] = max(0.05, 3.0 / self.args.pop_size)
             else:
                 params['p'] = self.args.jade_p
             params['c'] = self.args.jade_c
             if alg == 'mpede':
                 params['ng'] = self.args.mpede_ng
-                lambdas = np.array([self.args.lambda1, self.args.lambda2, self.args.lambda3, self.args.lambda4])
+                lambdas = np.array([self.args.mpede_lambda1, self.args.mpede_lambda2, self.args.mpede_lambda3, self.args.mpede_lambda4])
                 lambdas = lambdas / np.sum(lambdas)
                 params['lambdas'] = lambdas
 
