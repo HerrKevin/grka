@@ -108,7 +108,7 @@ def main():
 
     if args.tuner:
         if best_val is np.nan:
-            best_val = 9999 if args.use_gap else 1e99
+            best_val = 9999 if args.use_gap else 1e10
         print(f"GGA SUCCESS {best_val}")
 
 
