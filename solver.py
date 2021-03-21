@@ -21,9 +21,16 @@ class Solver(object):
         self.wall_start = time.time()
         self.caught_signal = False
 
+        orig_sigint = signal.getsignal(signal.SIGINT)
+        orig_sigterm = signal.getsignal(signal.SIGTERM)
+
         def sighandler_lambda(sig, frame):
             logger.critical(f"Signal {sig} received; stopping at next opportunity.")
-            return self.signal_handler(sig, frame)
+            self.signal_handler(sig, frame)
+            signal.signal(signal.SIGINT, orig_sigint)
+            signal.signal(signal.SIGTERM, orig_sigterm)
+            return True
+
         signal.signal(signal.SIGINT, sighandler_lambda)
         signal.signal(signal.SIGTERM, sighandler_lambda)
 
