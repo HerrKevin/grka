@@ -81,6 +81,8 @@ class ade(Solver):
             sol, fit = solver_.apply(**params)
         except Warning as ww:
             if self.args.tuner:
+                if self.best_fit > 1e9:
+                    self.best_fit = 1e9
                 print(f"GGA SUCCESS {self.best_fit}")
                 sys.exit(1)
             else:
