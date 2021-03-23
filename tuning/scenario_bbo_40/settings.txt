@@ -1,0 +1,36 @@
+wrapper_exe = bash
+wrapper_name = gga_runner_func.sh
+
+population = 96
+generations = 100
+
+min_generations = 80
+max_age = 3
+eval_group_size = 16
+eval_time_limit = 600
+tuner_rt_limit = 9223372036
+tuner_evals_limit = 2147483648
+winners_percentage = 0.1
+mutation_probability = 0.1
+sigma_percentage = 1.0
+
+crossover_operator = gga
+crossover_probability = 0.1
+
+use_elite_group = True
+
+objective = sum
+cancel = original
+
+instances_selector = rlinear
+instances_dir = 
+instances_min = 3
+instances_max = 28
+instances_gen_max = 75
+
+cost_tolerance = 0.0001
+cost_min = 0
+cost_max = 1e10
+
+seed = 3874
+
