@@ -20,6 +20,8 @@ out_dir=tuning/benchmark/func/${CCS_ARRAY_ID}_${job_name}
 grka_dir=/upb/departments/pc2/users/k/kbt/research/grka/
 cd ${grka_dir}
 
+source grkaenv/bin/activate
+
 mkdir -p ${out_dir}
 
 lines=$(wc -l ${inst_file} | cut -d " " -f1)
