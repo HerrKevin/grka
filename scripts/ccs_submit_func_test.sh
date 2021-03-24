@@ -4,7 +4,7 @@
 #CCS -t 1d
 #CCS --join oe
 #CCS --output /upb/departments/pc2/users/k/kbt/research/grka/tuning/cluster_junk/tuninglog.%reqid.out
-#CCS -N gtune_Fd20
+#CCS -N gtune_Fd40
 
 # NOTE: :smp=f if doing runtime tuning
 
@@ -13,10 +13,10 @@ rnum=$(shuf -i 100-999 -n 1)
 DGGA_PORT=10${rnum}
 PYDGGA="/upb/departments/pc2/users/k/kbt/research/grka/pydgga"
 TUNE_DIR="/scratch/hpc-prf-winf4/kbt/research/grka/"
-SCENARIO="/scratch/hpc-prf-winf4/kbt/research/grka/tuning/scenario_bbo_20/"
+SCENARIO="/scratch/hpc-prf-winf4/kbt/research/grka/tuning/scenario_bbo_40/"
 WORKER_DIR="/scratch/hpc-prf-winf4/kbt/research/grka/tuning/worker_output/"
 
-OUT_FILE=${TUNE_DIR}/tuning/output/grka_func_d20_me10k_${CCS_REQID}.out
+OUT_FILE=${TUNE_DIR}/tuning/output/grka_func_d40_me50k_${CCS_REQID}.out
 
 cd ${TUNE_DIR}
 

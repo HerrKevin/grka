@@ -26,7 +26,6 @@ if __name__ == "__main__":
             'lshadecnepsin': "--solver ade --ade_alg lshadecnepsin",
             'mpede': "--solver ade --ade_alg mpede",
             'sade': "--solver ade --ade_alg sade",
-            'saepsdemmts': "--solver ade --ade_alg saepsdemmts",
             'shade': "--solver ade --ade_alg shade",
             }
     
