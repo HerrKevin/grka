@@ -59,7 +59,7 @@ class ade(Solver):
         elif alg == 'de':
             params['f'] = self.args.de_f
             params['cr'] = self.args.de_cr
-            params['cross'] = self.args.cross
+            params['cross'] = self.args.de_cross
         elif alg in ['jade', 'mpede']:
             if self.args.jade_p < 1e-3:
                 params['p'] = max(0.05, 3.0 / self.args.pop_size)
