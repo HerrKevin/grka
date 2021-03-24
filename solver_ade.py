@@ -21,7 +21,7 @@ def add_parser_args(parser):
     parser.add_argument('--memory_size', type=int, action=min_max_arg('Mem size', 2), default=6, help='((i)l)shade(cnepsin)/jso memory size')
     parser.add_argument('--de_f', type=float, action=min_max_arg('DE_f', 0.0, 2.0), default=0.5, help='DE f')
     parser.add_argument('--de_cr', type=float, action=min_max_arg('DE_cr', 0.0, 1.0), default=0.9, help='DE f')
-    parser.add_argument('--de_cross', choices=['bin','exp'], default=bin, help='DE cross')
+    parser.add_argument('--de_cross', choices=['bin','exp'], default="bin", help='DE cross')
     parser.add_argument('--jade_p', type=float, action=min_max_arg('JADE_p', 0.0, 1.0), default=0.0, help='JADE/MPEDE p; note: if set less than 1e-3 the parameter will be set to max(0.05, 3.0/pop_size); default value for mpede suggested to be 0.04')
     parser.add_argument('--jade_c', type=float, action=min_max_arg('JADE_c', 0.0, 1.0), default=0.1, help='JADE/MPEDE c')
     parser.add_argument('--mpede_ng', type=int, action=min_max_arg('MPEDE_ng', 1, 200), default=20, help='MPEDE ng')
