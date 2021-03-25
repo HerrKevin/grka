@@ -51,7 +51,8 @@ def analyze(inst_file, ddir):
                     res['objective'].append(obj)
                     fail = False
                 except:
-                    traceback.print_exc()
+                    pass
+                    #traceback.print_exc()
                 if fail:
                     print(f"Final output for {func},{inst},{seed} is missing!")
 
