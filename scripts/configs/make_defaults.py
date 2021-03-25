@@ -31,9 +31,17 @@ if __name__ == "__main__":
     
     for sstr,pstr in solvers.items():
         with open(f'train_{prefix}_{sstr}_default.sh', 'w') as fp:
-            print(f"inst_file=tuning/{scenario}/instances.txt", file=fp)
+            print(f"inst_file=tuning/{scenario}/instances.txt", file=fp) # TODO probably should be moved into template
             print(f"job_name=train_{prefix}_{sstr}_default", file=fp)
             for line in template:
                 print(line, file=fp)
             print(f"params=\"{pstr}\"", file=fp)
+
+        with open(f'test_{prefix}_{sstr}_default.sh', 'w') as fp:
+            print(f"inst_file=tuning/{scenario}/instances_test.txt", file=fp)
+            print(f"job_name=test_{prefix}_{sstr}_default", file=fp)
+            for line in template:
+                print(line, file=fp)
+            print(f"params=\"{pstr}\"", file=fp)
+
 

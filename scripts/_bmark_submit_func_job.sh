@@ -45,8 +45,8 @@ for inst in $(sed -n ${lstart},${lend}p ${inst_file} | cut -d " " -f2); do
     finst=${sp[1]}
     seed=${sp[2]}
 
-    echo "python3 grka.py func /dev/null --use_gap --dims ${dims} --max_cpu 60 --max_evals 10000 --func ${func} --finst ${finst} --seed ${seed} ${params} 2>&1 | gzip &> ${out_file}"
-    python3 grka.py func /dev/null --use_gap --dims ${dims} --max_cpu 60 --max_evals 10000 --func ${func} --finst ${finst} --seed ${seed} ${params} 2>&1 | gzip &> ${out_file}
+    echo "python3 grka.py func /dev/null --use_gap --dims ${dims} --max_cpu 60 --max_evals ${max_evals} --func ${func} --finst ${finst} --seed ${seed} ${params} 2>&1 | gzip &> ${out_file}"
+    python3 grka.py func /dev/null --use_gap --dims ${dims} --max_cpu 60 --max_evals ${max_evals} --func ${func} --finst ${finst} --seed ${seed} ${params} 2>&1 | gzip &> ${out_file}
 done
 
 
