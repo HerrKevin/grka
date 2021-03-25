@@ -36,6 +36,7 @@ if (( ${lstart} > ${lines} )); then
     exit 0
 fi
 
+# NOTE this seems to only work because for whatever reason the space between seed and instance is being split on, so we then try to cut that, get nothing back, and the loop jumps over it...
 for inst in $(sed -n ${lstart},${lend}p ${inst_file} | cut -d " " -f2); do
     out_file=${out_dir}/${CCS_ARRAY_ID}_${inst}.out.gz
 
