@@ -19,7 +19,7 @@ def analyze_all(gstr):
             up_dir = os.path.abspath(os.path.join(dd, ".."))
             csv = f'{up_dir}/{bname}_agg.csv.gz'
             if os.path.exists(csv):
-                df = pd.read_csv(csv)
+                df = pd.read_csv(csv, index_col=0)
             else:
                 try:
                     if 'train' in bname:
@@ -41,7 +41,7 @@ def analyze_all(gstr):
                 if df_all is None:
                     df_all = df
                 else:
-                    df_all.append(df)
+                    df_all = df_all.append(df)
             else:
                 print(f"Failed to parse: {bname}")
     return df_all
