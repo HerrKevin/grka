@@ -1,450 +1,450 @@
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3030_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3031_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3048_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3011_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j305_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3028_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3044_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3030_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j308_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3034_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3041_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3032_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j307_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3018_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3046_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3034_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3048_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3046_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3046_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j307_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3034_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3048_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j308_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j309_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3025_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3018_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3028_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3025_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3046_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3048_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3031_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3032_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j307_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j307_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3011_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3012_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3014_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3012_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3034_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3032_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3018_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3028_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3011_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j309_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j305_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3014_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3012_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3046_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3011_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3014_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3012_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3048_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j305_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3031_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3018_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3031_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3022_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j308_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3039_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3030_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3032_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j309_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3012_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j309_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3044_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3044_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3048_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3039_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j308_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3030_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j307_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3046_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3025_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3014_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3031_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3042_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3032_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3042_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3042_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3039_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3011_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3015_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3031_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3048_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3037_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3044_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3034_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3030_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3037_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3028_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3039_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j305_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j307_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3042_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j309_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3046_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3031_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3018_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3048_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3037_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3015_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3037_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3022_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3014_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j305_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3015_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3028_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3022_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3022_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j309_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3037_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3039_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3041_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3046_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3044_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3030_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3015_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j308_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3042_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3011_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3030_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3028_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3039_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3044_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3041_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3034_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3034_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3041_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3039_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3031_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3012_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3032_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3015_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3018_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3041_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3025_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3037_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3042_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3037_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3039_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3028_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3044_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3041_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3018_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3032_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3034_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3015_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3022_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3025_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3022_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3048_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3042_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3039_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3018_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3014_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3011_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j308_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3015_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3011_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j307_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3034_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3031_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3042_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3022_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j305_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3025_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3044_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j307_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3028_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3014_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3030_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3025_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3037_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j308_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3028_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3012_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3030_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3037_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j305_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3046_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3025_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j305_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3041_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j308_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3044_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3011_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3015_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3032_7.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3015_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j305_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j307_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3042_4.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_6.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3018_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_3.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3041_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_8.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3022_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j309_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_5.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_10.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3022_1.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3014_9.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j309_2.sm
-/scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j309_1.sm
+81288 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_8.sm
+7970 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3030_8.sm
+50778 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_10.sm
+81490 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3031_3.sm
+40811 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3048_6.sm
+88992 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3011_8.sm
+32317 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j305_2.sm
+50940 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_2.sm
+88144 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_4.sm
+76958 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_6.sm
+38488 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_8.sm
+44471 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3028_6.sm
+17662 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_7.sm
+29412 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3044_8.sm
+43455 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_9.sm
+67461 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_3.sm
+8324 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_1.sm
+63701 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_9.sm
+7999 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3030_6.sm
+56149 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_5.sm
+31107 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_10.sm
+36563 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_2.sm
+55896 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_6.sm
+62225 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j308_2.sm
+78186 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3034_3.sm
+60597 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3041_10.sm
+16829 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3032_4.sm
+49731 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_9.sm
+14911 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j307_2.sm
+20404 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3018_7.sm
+11784 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_1.sm
+10143 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_2.sm
+60596 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_8.sm
+46083 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_6.sm
+98180 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3046_7.sm
+26302 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_3.sm
+54820 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_1.sm
+20137 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_9.sm
+22627 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3034_4.sm
+92295 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_7.sm
+59049 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_5.sm
+41063 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_7.sm
+78426 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_9.sm
+2094 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_10.sm
+4993 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3048_1.sm
+38227 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3046_5.sm
+42848 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_3.sm
+39511 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3046_2.sm
+30187 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j307_6.sm
+43328 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3034_1.sm
+4349 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_7.sm
+13585 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3048_4.sm
+65253 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_8.sm
+85081 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j308_10.sm
+86604 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_9.sm
+65016 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_3.sm
+32642 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j309_3.sm
+61444 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3025_5.sm
+54355 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_1.sm
+81864 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3018_1.sm
+95886 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3028_3.sm
+86946 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_9.sm
+19970 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3025_8.sm
+57995 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_9.sm
+46796 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_7.sm
+1094 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_10.sm
+10941 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_3.sm
+46893 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3046_4.sm
+5608 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_10.sm
+22474 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3048_9.sm
+65721 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3031_7.sm
+16166 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_4.sm
+35159 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_3.sm
+66076 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3032_8.sm
+67936 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j307_10.sm
+9336 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j307_7.sm
+66534 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_8.sm
+81366 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3011_4.sm
+31901 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3012_4.sm
+60216 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_8.sm
+12915 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_2.sm
+49027 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3014_2.sm
+15343 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3012_10.sm
+46745 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3034_10.sm
+97004 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3032_9.sm
+67955 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_4.sm
+39045 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3018_6.sm
+12775 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_3.sm
+71566 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_3.sm
+86076 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3028_4.sm
+91878 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_10.sm
+42294 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3011_3.sm
+73493 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j309_6.sm
+71147 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_3.sm
+20043 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j305_3.sm
+85801 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3014_1.sm
+69239 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_8.sm
+47508 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3012_8.sm
+31890 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_4.sm
+29424 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3046_6.sm
+51071 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_5.sm
+40696 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_5.sm
+92119 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_4.sm
+49785 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3011_5.sm
+37148 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3014_4.sm
+32171 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3012_1.sm
+77091 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_1.sm
+43342 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3048_8.sm
+2023 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_2.sm
+34961 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_1.sm
+24776 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_2.sm
+25611 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_7.sm
+85378 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j305_5.sm
+62365 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3031_9.sm
+39929 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_3.sm
+46925 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_7.sm
+54984 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3018_8.sm
+92434 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_3.sm
+16592 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3031_6.sm
+25076 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3022_3.sm
+76951 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_8.sm
+98229 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_2.sm
+88876 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j308_7.sm
+8254 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_1.sm
+65112 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_5.sm
+86950 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3039_7.sm
+74647 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_7.sm
+1481 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3030_10.sm
+95984 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_8.sm
+67296 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3032_3.sm
+47929 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_1.sm
+31362 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j309_9.sm
+22090 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_6.sm
+54895 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3012_2.sm
+88250 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j309_5.sm
+62762 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_2.sm
+24156 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3044_4.sm
+51603 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3044_1.sm
+6423 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_5.sm
+40139 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_7.sm
+85414 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3048_2.sm
+39006 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3039_2.sm
+95157 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j308_3.sm
+76999 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_7.sm
+74577 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_7.sm
+79109 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_10.sm
+52029 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3030_7.sm
+79514 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_7.sm
+83628 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_2.sm
+93942 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j307_1.sm
+24811 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_7.sm
+16327 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3046_10.sm
+17286 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3025_10.sm
+56361 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_5.sm
+30881 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_8.sm
+68889 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3014_6.sm
+99875 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_4.sm
+30791 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3031_2.sm
+45055 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_6.sm
+88605 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3042_2.sm
+97438 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_8.sm
+23606 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_4.sm
+96418 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_10.sm
+66688 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_7.sm
+80092 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_4.sm
+73874 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_5.sm
+6092 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_8.sm
+26264 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_5.sm
+5674 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_9.sm
+8701 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3032_2.sm
+30180 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_6.sm
+39940 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3042_1.sm
+17421 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3042_5.sm
+89705 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3039_10.sm
+43560 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3011_1.sm
+72723 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_5.sm
+12896 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_9.sm
+73348 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_6.sm
+98661 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_2.sm
+25224 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3015_2.sm
+36640 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_3.sm
+29086 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_4.sm
+5841 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_9.sm
+41950 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_5.sm
+96956 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3031_10.sm
+34760 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_5.sm
+48440 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3048_10.sm
+23504 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_1.sm
+23800 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_1.sm
+24427 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_9.sm
+250 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_9.sm
+44371 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_8.sm
+40806 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3037_1.sm
+24864 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_5.sm
+84988 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_2.sm
+82724 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_4.sm
+93249 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_8.sm
+8282 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_8.sm
+52530 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_6.sm
+46932 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_4.sm
+44568 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_5.sm
+91608 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_1.sm
+36077 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_3.sm
+11573 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_7.sm
+59653 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_3.sm
+34104 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3044_10.sm
+33208 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3034_9.sm
+39972 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3030_3.sm
+58816 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_10.sm
+72011 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3037_10.sm
+73925 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_9.sm
+98028 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_1.sm
+58522 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_5.sm
+72601 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3028_9.sm
+1099 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3039_6.sm
+94145 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j305_10.sm
+89326 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j307_8.sm
+41999 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_10.sm
+37419 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_3.sm
+46519 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_3.sm
+17344 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3042_3.sm
+84096 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_3.sm
+18304 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j309_7.sm
+75892 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_4.sm
+14967 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_1.sm
+43869 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_5.sm
+19789 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3046_3.sm
+22204 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_9.sm
+99685 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3031_5.sm
+64207 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_2.sm
+79120 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_7.sm
+8179 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_9.sm
+18471 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3018_2.sm
+47003 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3048_5.sm
+58005 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3037_3.sm
+30868 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_7.sm
+47714 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_6.sm
+69172 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_1.sm
+40224 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3015_7.sm
+49531 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_2.sm
+32827 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_2.sm
+52898 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3037_5.sm
+9172 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_2.sm
+93437 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_1.sm
+10688 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3022_2.sm
+72309 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3014_8.sm
+14291 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_5.sm
+82947 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j305_1.sm
+22576 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_10.sm
+38625 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3015_10.sm
+19979 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_5.sm
+20202 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_2.sm
+54931 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3028_8.sm
+86928 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_5.sm
+18767 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3022_9.sm
+97840 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3022_4.sm
+91260 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_6.sm
+45721 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_7.sm
+33810 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j309_8.sm
+9855 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3037_6.sm
+97015 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3039_3.sm
+45150 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3041_9.sm
+6034 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_6.sm
+28150 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3046_8.sm
+6903 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3044_2.sm
+58181 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3030_1.sm
+11195 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_9.sm
+69468 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_8.sm
+91297 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3015_4.sm
+80606 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_6.sm
+50978 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_2.sm
+93122 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_2.sm
+71112 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_4.sm
+54293 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j308_4.sm
+85129 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3042_8.sm
+77536 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3011_10.sm
+20560 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3030_4.sm
+71740 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3028_2.sm
+32046 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3039_4.sm
+51556 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3044_9.sm
+18042 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3041_2.sm
+26636 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_1.sm
+43056 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_10.sm
+18833 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_4.sm
+51644 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_6.sm
+13232 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_10.sm
+82136 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3034_7.sm
+84778 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3034_2.sm
+50342 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3041_1.sm
+44236 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3039_1.sm
+70366 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3031_4.sm
+13970 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_1.sm
+15718 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_10.sm
+85437 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3012_5.sm
+95958 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3032_1.sm
+48941 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3015_8.sm
+6814 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_9.sm
+67592 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3018_9.sm
+63362 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3041_3.sm
+29010 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3025_4.sm
+12484 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3037_8.sm
+84038 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_9.sm
+28762 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_6.sm
+28669 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3042_7.sm
+46603 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3037_4.sm
+5202 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_6.sm
+614 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_9.sm
+92190 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_1.sm
+28415 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3039_9.sm
+10409 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3028_1.sm
+38426 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_1.sm
+50065 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3044_6.sm
+7091 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3041_6.sm
+51097 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_9.sm
+84928 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3018_4.sm
+49940 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_10.sm
+14365 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_4.sm
+93552 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3032_10.sm
+30381 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_4.sm
+86623 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_9.sm
+95867 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_2.sm
+72652 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_6.sm
+54507 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_6.sm
+96325 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3034_6.sm
+49192 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_1.sm
+92573 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_4.sm
+67095 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3015_6.sm
+88378 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3022_6.sm
+29063 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3025_9.sm
+47144 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_4.sm
+77645 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_4.sm
+28188 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_7.sm
+35249 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_8.sm
+24953 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_8.sm
+81586 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3022_5.sm
+32522 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_7.sm
+6180 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3048_7.sm
+49546 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3042_6.sm
+58287 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_5.sm
+28540 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3039_5.sm
+57765 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3018_10.sm
+46170 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_1.sm
+35660 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3014_5.sm
+88940 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_10.sm
+16646 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_3.sm
+27226 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_1.sm
+70289 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3011_7.sm
+42604 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j308_8.sm
+98543 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3015_3.sm
+52647 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3011_2.sm
+31680 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j307_9.sm
+87036 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_1.sm
+43103 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_6.sm
+63452 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3034_5.sm
+94158 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_4.sm
+76802 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_9.sm
+90086 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3031_8.sm
+82447 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3035_8.sm
+30105 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3042_9.sm
+88225 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_2.sm
+55213 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_10.sm
+10816 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_3.sm
+54036 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_7.sm
+72107 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3022_7.sm
+97409 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j305_9.sm
+75213 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3033_3.sm
+95794 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_9.sm
+1688 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3043_6.sm
+1900 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_2.sm
+79985 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_6.sm
+57460 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3025_3.sm
+7169 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_7.sm
+41223 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3044_5.sm
+30926 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j307_4.sm
+22067 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3028_10.sm
+33725 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_8.sm
+47991 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3014_7.sm
+63963 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_10.sm
+95123 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_8.sm
+29889 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_6.sm
+65810 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3030_9.sm
+72201 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3026_8.sm
+26327 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j303_8.sm
+23440 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3025_6.sm
+50009 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3037_7.sm
+72861 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j308_9.sm
+10482 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3028_7.sm
+35532 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_6.sm
+97775 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3012_7.sm
+83082 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_2.sm
+7811 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_5.sm
+91553 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_4.sm
+36615 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_10.sm
+59146 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3030_5.sm
+15732 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3037_9.sm
+60348 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j305_7.sm
+45723 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_7.sm
+4836 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3046_9.sm
+94584 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3025_2.sm
+15063 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_8.sm
+84401 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j305_8.sm
+15467 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j302_7.sm
+47898 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_3.sm
+36817 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3041_5.sm
+49486 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j308_1.sm
+77496 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_4.sm
+56439 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3044_3.sm
+30191 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_4.sm
+80495 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_6.sm
+56805 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_5.sm
+88716 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3023_7.sm
+10891 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_9.sm
+13858 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_4.sm
+74741 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3013_3.sm
+64429 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3011_6.sm
+57970 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3015_9.sm
+64289 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_3.sm
+71975 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3010_2.sm
+52245 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3047_2.sm
+83496 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3040_4.sm
+93993 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_1.sm
+47087 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_1.sm
+49540 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3021_10.sm
+8247 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3032_7.sm
+13036 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j301_10.sm
+40496 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3015_5.sm
+9717 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j305_6.sm
+32700 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3024_5.sm
+34602 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j307_5.sm
+73407 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_2.sm
+33556 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3017_10.sm
+56782 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3042_4.sm
+56010 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j306_6.sm
+28031 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3038_3.sm
+5965 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3020_6.sm
+51584 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3045_10.sm
+77863 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3018_5.sm
+15688 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3019_3.sm
+77956 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3041_8.sm
+79974 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3036_8.sm
+25796 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3022_10.sm
+47526 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3016_5.sm
+29124 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j309_10.sm
+59066 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3027_10.sm
+13893 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j304_5.sm
+91509 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3029_10.sm
+76401 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3022_1.sm
+14481 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j3014_9.sm
+8076 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j309_2.sm
+72912 /scratch/hpc-prf-winf4/kbt/research/grka//data/rcpsp/j30/j309_1.sm
