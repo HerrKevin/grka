@@ -119,10 +119,16 @@ class rcpsp(Problem):
         """
         orig_key = np.copy(key)
         obj1, start1, end1 = self.evaluate_fb(key, self.inst.prec, self.inst.succ, 0)
+        if start1 is None:
+            return obj1
         key = self.inst.horizon - end1
         obj2, start2, end2 = self.evaluate_fb(key, self.inst.succ, self.inst.prec, self.inst.jobs - 1)
+        if start2 is None:
+            return obj2
         key = self.inst.horizon - end2
         obj3, start3, end3 = self.evaluate_fb(key, self.inst.prec, self.inst.succ, 0)
+        if start3 is None:
+            return obj3
         if not print_sol:
             return min(obj1, obj2, obj3) + 1
         else:
@@ -199,8 +205,9 @@ class rcpsp(Problem):
 #             print(f"{jstar} ravail {ravail}")
 #             print(earliest_start, latest_finish)
             if job_end < 0:
-                logger.error("need to handle an infeasible sorting")
-                return 1e50
+                # Infeasible sorting; not sure what to do other than to give up
+#                 logger.error("need to handle an infeasible sorting")
+                return 1e50, None, None
 
             # TODO I'm ignoring the gamma part of Fig. 6, but including it mihgt
             # speed this up.. or not. not sure.
