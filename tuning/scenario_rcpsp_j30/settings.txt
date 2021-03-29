@@ -1,5 +1,5 @@
 wrapper_exe = bash
-wrapper_name = gga_runner_func.sh
+wrapper_name = gga_runner_rcpsp.sh
 
 population = 96
 generations = 100
