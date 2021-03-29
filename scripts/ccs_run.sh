@@ -39,6 +39,6 @@ else
     sleep 15 # wait 15 seconds before starting the workers so the master has time to start
     master_ip=$(python3 scripts/ccs_get_master_ip.py ${CCS_MAPPING})
 
-    "${PYDGGA}" dggaw --address "${master_ip}" --slots 16 --port "${DGGA_PORT}" --verbose DEBUG &> ${WORKER_OUT_DIR}/$(basename ${OUT_FILE})_worker_$(hostname)_${CCS_REQID}.out
+    "${PYDGGA}" dggaw --address "${master_ip}" --slots 16 --port "${DGGA_PORT}" --verbose DEBUG &> ${WORKER_OUT_DIR}/$(basename ${OUT_FILE})_worker_$(hostname)_${CCS_REQNAME}_${CCS_REQID}.out
 fi
 
