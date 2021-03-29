@@ -137,7 +137,7 @@ class rcpsp(Problem):
                 return obj1 + 1
             elif obj2 <= obj1 and obj2 <= obj3:
                 key = self.inst.horizon - end1
-                self.evaluate_fb(key, self.inst.succ, self.inst.prec, self.inst.jobs - 1, True)
+                self.evaluate_fb(key, self.inst.succ, self.inst.prec, self.inst.jobs - 1, True, True)
                 return obj2 + 1
             else:
                 key = self.inst.horizon - end2
@@ -145,7 +145,7 @@ class rcpsp(Problem):
                 return obj3 + 1
         return obj3 + 1
 
-    def evaluate_fb(self, key, prec, succ, start_at, print_sol=False):
+    def evaluate_fb(self, key, prec, succ, start_at, print_sol=False, print_sol_rev=False):
         """
         Decoder from page 474 (Fig. 6) from "A biased random-key genetic
         algorithm with forward-bckward improvement for the resource constrained
@@ -231,7 +231,11 @@ class rcpsp(Problem):
 #             print("====")
 
         if print_sol:
-            logger.info(f"Job (start, end): {list(zip(start+1,end+1))}")
+            if print_sol_rev:
+                out_sol = list(reversed(zip(start+1,end+1)))
+            else:
+                out_sol = list(zip(start+1,end+1))
+            logger.info(f"Job (start, end): {out_sol}")
         return np.max(end), start, end
 
 
