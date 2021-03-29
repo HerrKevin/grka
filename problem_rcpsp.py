@@ -2,6 +2,7 @@ from collections import defaultdict
 from loguru import logger
 from scipy.spatial.distance import squareform
 import argparse
+import copy
 import heapq
 import itertools
 import numpy as np
@@ -118,34 +119,18 @@ class rcpsp(Problem):
 
         """
         orig_key = np.copy(key)
-        obj1, start1, end1 = self.evaluate_fb(key, self.inst.prec, self.inst.succ, 0)
+        obj1, start1, end1 = self.evaluate_initial(key)
         if start1 is None:
             return obj1
-        key = self.inst.horizon - end1
-        obj2, start2, end2 = self.evaluate_fb(key, self.inst.succ, self.inst.prec, self.inst.jobs - 1)
-        if start2 is None:
-            return obj2
-        key = self.inst.horizon - end2
-        obj3, start3, end3 = self.evaluate_fb(key, self.inst.prec, self.inst.succ, 0)
-        if start3 is None:
-            return obj3
-        if not print_sol:
-            return min(obj1, obj2, obj3) + 1
-        else:
-            if obj1 <= obj3 and obj1 <= obj2:
-                self.evaluate_fb(orig_key, self.inst.prec, self.inst.succ, 0, True)
-                return obj1 + 1
-            elif obj2 <= obj1 and obj2 <= obj3:
-                key = self.inst.horizon - end1
-                self.evaluate_fb(key, self.inst.succ, self.inst.prec, self.inst.jobs - 1, True, True)
-                return obj2 + 1
-            else:
-                key = self.inst.horizon - end2
-                self.evaluate_fb(key, self.inst.prec, self.inst.succ, 0, True)
-                return obj3 + 1
-        return obj3 + 1
 
-    def evaluate_fb(self, key, prec, succ, start_at, print_sol=False, print_sol_rev=False):
+        obj2, start2, end2 = self.backwards(start1, end1)
+        obj3, start3, end3 = self.forwards(start2, end2)
+
+        if print_sol:
+            logger.info(f"Job (start, end): {list(zip(start3+1,end3+1))}")
+        return obj3
+
+    def evaluate_initial(self, key):
         """
         Decoder from page 474 (Fig. 6) from "A biased random-key genetic
         algorithm with forward-bckward improvement for the resource constrained
@@ -159,9 +144,9 @@ class rcpsp(Problem):
         end = np.zeros(inst.jobs, dtype=int)
 
         sg = np.zeros(inst.jobs, dtype=bool)
-        sg[start_at] = True
+        sg[0] = True
         dg = []
-        dg.extend(succ[start_at])
+        dg.extend(inst.succ[0])
 
         rremaining = np.zeros((inst.horizon, inst.resources), dtype=int)
         rremaining[:] = inst.rcap
@@ -185,7 +170,7 @@ class rcpsp(Problem):
 #             print(f"jstar: {jstar}")
             del dg[jstar_idx]
 
-            ef = np.max(end[prec[jstar]])
+            ef = np.max(end[inst.prec[jstar]])
 
             earliest_start = ef
             latest_finish = self.lf[jstar] - inst.duration[jstar]
@@ -217,8 +202,8 @@ class rcpsp(Problem):
             sg[jstar] = True
 
             # update dg with jobs that can run
-            for jj in succ[jstar]:
-                if sg[prec[jj]].all():
+            for jj in inst.succ[jstar]:
+                if sg[inst.prec[jj]].all():
                     dg.append(jj)
 
             # update resource consumption
@@ -229,14 +214,92 @@ class rcpsp(Problem):
 #             print(f"(start, end) {list(zip(start,end))}")
 #             print(f"remaining {rremaining.T}")
 #             print("====")
-
-        if print_sol:
-            if print_sol_rev:
-                out_sol = list(reversed(zip(start+1,end+1)))
-            else:
-                out_sol = list(zip(start+1,end+1))
-            logger.info(f"Job (start, end): {out_sol}")
         return np.max(end), start, end
+
+    def backwards(self, start, end):
+        inst = self.inst
+
+#         pend = np.copy(end)
+
+        nstart = np.copy(start)
+        nend = np.copy(end)
+#         print(list(zip(nstart, nend)))
+
+        nrremaining = np.zeros((inst.horizon, inst.resources), dtype=int)
+        nrremaining[:] = inst.rcap
+
+        jj = inst.jobs - 1
+        end_max = np.max(end)
+        nstart[jj] = end_max
+        nend[jj] = end_max
+
+        inspect = list(range(inst.jobs - 1))
+        for gg in range(inst.jobs - 1):
+            # Select last scheduled job that we haven't looked at yet
+            iidx = np.argmax(end[inspect])
+            jj = inspect[iidx]
+            del inspect[iidx]
+
+            if inst.succ[jj]:
+                earliest_succ = np.min(nstart[inst.succ[jj]]) - 1
+            else:
+                earliest_succ = end_max
+
+            iu = inst.usage[jj]
+            for tt in range(earliest_succ, end[jj], -1):
+                ss = tt - inst.duration[jj] + 1 # tt is included as a resource consuming time
+                if (nrremaining[ss:tt+1,:] >= iu).all():
+                    # Job fits; move it back here
+                    nstart[jj] = ss
+                    nend[jj] = tt
+                    nrremaining[ss:tt,:] -= iu
+                    break
+
+#         print(list(zip(nstart, nend)))
+        return max(end), nstart, nend
+
+    def forwards(self, start, end):
+        inst = self.inst
+
+        pend = np.copy(end)
+
+        nstart = np.copy(start)
+        nend = np.copy(end)
+#         print(list(zip(nstart, nend)))
+
+        nrremaining = np.zeros((inst.horizon, inst.resources), dtype=int)
+        nrremaining[:] = inst.rcap
+
+        jj = 0
+        nstart[jj] = 0
+        nend[jj] = 0
+
+        inspect = list(range(1, inst.jobs))
+        for gg in range(inst.jobs - 1):
+            # Select last scheduled job that we haven't looked at yet
+            iidx = np.argmin(start[inspect])
+            jj = inspect[iidx]
+            del inspect[iidx]
+
+            if inst.prec[jj]:
+                latest_prec = np.max(nend[inst.prec[jj]])
+            else:
+                latest_prec = 0
+
+            iu = inst.usage[jj]
+            for ss in range(latest_prec, start[jj]):
+                tt = ss + inst.duration[jj] - 1 # tt is included as a resource consuming time
+                if (nrremaining[ss:tt+1,:] >= iu).all():
+                    # Job fits; move it back here
+                    nstart[jj] = ss
+                    nend[jj] = tt
+                    nrremaining[ss:tt,:] -= iu
+                    break
+
+#         print(list(zip(nstart, nend)))
+        return max(end), nstart, nend
+
+
 
 
 
