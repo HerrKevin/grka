@@ -15,7 +15,7 @@ splits=16 # should be b from -J a-b
 
 source $1
 
-out_dir=tuning/benchmark/rcpsp/j30/${CCS_ARRAY_ID}_${job_name}
+out_dir=tuning/benchmark/rcpsp/${out_dir}/${CCS_ARRAY_ID}_${job_name}
 
 grka_dir=/upb/departments/pc2/users/k/kbt/research/grka/
 cd ${grka_dir}
