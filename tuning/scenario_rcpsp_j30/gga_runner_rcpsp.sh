@@ -7,5 +7,5 @@ inst=$1
 seed=$3
 
 
-python3 grka.py rcpsp ${inst} --seed ${seed} --max_cpu 60 --tuner --max_evals 10000 "${@:4}"
+python3 grka.py rcpsp ${inst} --seed ${seed} --max_cpu 120 --tuner --max_evals 25000 "${@:4}"
 
