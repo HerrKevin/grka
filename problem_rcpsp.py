@@ -121,27 +121,19 @@ class rcpsp(Problem):
         if start1 is None:
             return obj1
 
-        print(list(zip(start1, end1)))
-        print()
-
         obj2, start2, end2 = self.backwards(start1, end1)
-
-        print(list(zip(start2, end2)))
-        print()
 
         obj3, start3, end3 = self.forwards(start2, end2)
 
         if print_sol:
             logger.info(f"Job (start, end): {list(zip(start3+1,end3+1))}")
 
-        if self.args.mod_makespan_l > 0:
-            print(self.modify_makespan(start3, end3))
-            return obj3 + self.modify_makespan(start3, end3)
+        if not print_sol and self.args.mod_makespan_l > 0:
+            return obj3 + self.modify_makespan(start3, end3) + 1
         else:
-            return obj3
+            return obj3 + 1
 
     def modify_makespan(self, start, end):
-        print(list(zip(start, end)))
         ll = self.args.mod_makespan_l
         inst = self.inst
 
@@ -157,11 +149,9 @@ class rcpsp(Problem):
             if ll + 1 <= ll:
                 inspect.extend([(ll+1, pp) for pp in inst.prec[jj]])
 
-            print(f"{dist},{jj}: numer += {end[jj]}; denom += {end[-1]}")
             numer += end[jj]
             denom += end[-1]
 
-        sys.exit(1)
         return numer / denom
 
     def evaluate_initial(self, key):
@@ -248,7 +238,7 @@ class rcpsp(Problem):
 #             print(f"(start, end) {list(zip(start,end))}")
 #             print(f"remaining {rremaining.T}")
 #             print("====")
-        return np.max(end), start, end
+        return end[-1], start, end
 
     def backwards(self, start, end):
         inst = self.inst
@@ -290,7 +280,7 @@ class rcpsp(Problem):
                     break
 
 #         print(list(zip(nstart, nend)))
-        return max(end), nstart, nend
+        return nend[-1], nstart, nend
 
     def forwards(self, start, end):
         inst = self.inst
@@ -331,7 +321,7 @@ class rcpsp(Problem):
                     break
 
 #         print(list(zip(nstart, nend)))
-        return max(end), nstart, nend
+        return nend[-1], nstart, nend
 
 
 
