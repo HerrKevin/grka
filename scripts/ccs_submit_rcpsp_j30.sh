@@ -16,7 +16,7 @@ TUNE_DIR="/scratch/hpc-prf-winf4/kbt/research/grka/"
 SCENARIO="/scratch/hpc-prf-winf4/kbt/research/grka/tuning/scenario_rcpsp_j30/"
 WORKER_DIR="/scratch/hpc-prf-winf4/kbt/research/grka/tuning/worker_output/"
 
-OUT_FILE=${TUNE_DIR}/tuning/output/grka_rcpsp_j30_me10k_${CCS_REQID}.out.gz
+OUT_FILE=${TUNE_DIR}/tuning/output/grka_rcpsp_j30_cpu120s_me25k_${CCS_REQID}.out.gz
 
 cd ${TUNE_DIR}
 
