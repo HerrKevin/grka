@@ -1,1 +1,2 @@
-max_evals=10000
+max_evals=25000
+max_cpu=120
