@@ -45,8 +45,8 @@ for seed_inst in $(sed -n ${lstart},${lend}p ${inst_file}); do
     out_file=${out_dir}/${CCS_ARRAY_ID}_${binst}.out.gz
 
     IFS=$' '
-    echo "python3 grka.py rcpsp ${inst} --max_cpu 60 --max_evals ${max_evals} --seed ${seed} ${params} 2>&1 | gzip &> ${out_file}"
-    python3 grka.py rcpsp ${inst} --max_cpu 60 --max_evals ${max_evals} --seed ${seed} ${params} 2>&1 | gzip &> ${out_file}
+    echo "python3 grka.py rcpsp ${inst} --max_cpu ${max_cpu} --max_evals ${max_evals} --seed ${seed} ${params} 2>&1 | gzip &> ${out_file}"
+    python3 grka.py rcpsp ${inst} --max_cpu ${max_cpu} --max_evals ${max_evals} --seed ${seed} ${params} 2>&1 | gzip &> ${out_file}
     IFS=$'\n'
 done
 
