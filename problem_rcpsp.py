@@ -13,9 +13,7 @@ import time
 from problem import Problem
 
 def add_parser_args(parser):
-#     parser.add_argument('--penalty', type=int, default=10, help='Penalty multiplier per unserviced pickup/delivery')
-#     parser.add_argument('--no_mm34_output', action='store_true', default=False, help='Enables more compact output')
-    pass
+    parser.add_argument('--mod_makespan_l', type=int, default=0, help='L value for the modified makespan from Mendes et al. (2007). A value of 0 turns off the modified makespan.')
 
 def read_instance(inst_path):
     with open(inst_path, 'r') as fp:
@@ -123,12 +121,48 @@ class rcpsp(Problem):
         if start1 is None:
             return obj1
 
+        print(list(zip(start1, end1)))
+        print()
+
         obj2, start2, end2 = self.backwards(start1, end1)
+
+        print(list(zip(start2, end2)))
+        print()
+
         obj3, start3, end3 = self.forwards(start2, end2)
 
         if print_sol:
             logger.info(f"Job (start, end): {list(zip(start3+1,end3+1))}")
-        return obj3
+
+        if self.args.mod_makespan_l > 0:
+            print(self.modify_makespan(start3, end3))
+            return obj3 + self.modify_makespan(start3, end3)
+        else:
+            return obj3
+
+    def modify_makespan(self, start, end):
+        print(list(zip(start, end)))
+        ll = self.args.mod_makespan_l
+        inst = self.inst
+
+        numer = end[-1]
+        denom = end[-1]
+
+        inspect = [(1, pp) for pp in inst.prec[inst.jobs - 1]]
+        while inspect:
+            (dist, jj) = inspect.pop()
+            if dist > ll:
+                continue
+
+            if ll + 1 <= ll:
+                inspect.extend([(ll+1, pp) for pp in inst.prec[jj]])
+
+            print(f"{dist},{jj}: numer += {end[jj]}; denom += {end[-1]}")
+            numer += end[jj]
+            denom += end[-1]
+
+        sys.exit(1)
+        return numer / denom
 
     def evaluate_initial(self, key):
         """
@@ -237,8 +271,7 @@ class rcpsp(Problem):
         for gg in range(inst.jobs - 1):
             # Select last scheduled job that we haven't looked at yet
             iidx = np.argmax(end[inspect])
-            jj = inspect[iidx]
-            del inspect[iidx]
+            jj = inspect.pop(iidx)
 
             if inst.succ[jj]:
                 earliest_succ = np.min(nstart[inst.succ[jj]]) - 1
@@ -246,13 +279,14 @@ class rcpsp(Problem):
                 earliest_succ = end_max
 
             iu = inst.usage[jj]
-            for tt in range(earliest_succ, end[jj], -1):
-                ss = tt - inst.duration[jj] + 1 # tt is included as a resource consuming time
+            for tt in range(earliest_succ, 0, -1):
+                extra = 1 if inst.duration[jj] > 0 else 0
+                ss = tt - inst.duration[jj] + extra
                 if (nrremaining[ss:tt+1,:] >= iu).all():
                     # Job fits; move it back here
                     nstart[jj] = ss
                     nend[jj] = tt
-                    nrremaining[ss:tt,:] -= iu
+                    nrremaining[ss:tt+1,:] -= iu
                     break
 
 #         print(list(zip(nstart, nend)))
@@ -278,8 +312,7 @@ class rcpsp(Problem):
         for gg in range(inst.jobs - 1):
             # Select last scheduled job that we haven't looked at yet
             iidx = np.argmin(start[inspect])
-            jj = inspect[iidx]
-            del inspect[iidx]
+            jj = inspect.pop(iidx)
 
             if inst.prec[jj]:
                 latest_prec = np.max(nend[inst.prec[jj]])
@@ -287,13 +320,14 @@ class rcpsp(Problem):
                 latest_prec = 0
 
             iu = inst.usage[jj]
-            for ss in range(latest_prec, start[jj]):
-                tt = ss + inst.duration[jj] - 1 # tt is included as a resource consuming time
+            for ss in range(latest_prec+1, inst.horizon):
+                extra = 1 if inst.duration[jj] > 0 else 0
+                tt = ss + inst.duration[jj] - extra # tt is included as a resource consuming time
                 if (nrremaining[ss:tt+1,:] >= iu).all():
                     # Job fits; move it back here
                     nstart[jj] = ss
                     nend[jj] = tt
-                    nrremaining[ss:tt,:] -= iu
+                    nrremaining[ss:tt+1,:] -= iu
                     break
 
 #         print(list(zip(nstart, nend)))
