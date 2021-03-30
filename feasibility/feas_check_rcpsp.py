@@ -7,12 +7,13 @@ import re
 import numpy as np
 from loguru import logger
 sys.path.append("../")
+sys.path.append(".")
 from problem_rcpsp import read_instance
 
 
 gre = re.compile(r'^(.*(j\d+)_.*\d+_(j\d+_\d+).sm.out.gz):.*Job \(start, end\):\s+(\[.*\])$')
 
-def check_feas(odir):
+def check_feas_dir(odir):
     for line in zgrep("problem_rcpsp:evaluate_fb", sh.glob(f"{odir}/*.out.gz"), _ok_code=[0,1,2]):
         if 'j309_4' not in line:
             continue
@@ -26,6 +27,7 @@ def check_feas(odir):
 #             if sol[0][0] > 1:
 #                 sol.reverse()
             inst_path = f'../data/rcpsp/{group}/{inst_name}.sm'
+
             inst = read_instance(inst_path)
 
             # Check resource capacity constraint
@@ -55,12 +57,40 @@ def check_feas(odir):
             if invalid:
                 continue
 
+def check_feas_single(inst_path, sol):
+    inst = read_instance(inst_path)
 
+    # Check resource capacity constraint
+    rusage = np.zeros((inst.resources, inst.horizon))
+    for jj, (start, end) in enumerate(sol):
+        if start == end:
+            continue
+        rusage[:,start:end+1] += inst.usage[jj][:, np.newaxis]
+    if (rusage > inst.rcap[:, np.newaxis]).any():
+        print(rusage)
+        print(inst.rcap)
+        print(f"Infeasible (resource capacity exceeded).")
+        return
+
+    # Check precedence relations
+    jopen = [0]
+    invalid = False
+    while jopen and not invalid:
+        jj = jopen[-1]
+        del jopen[-1]
+        jopen.extend(inst.succ[jj])
+        for ss in inst.succ[jj]:
+            if sol[jj][0] >= sol[ss][1]:
+                print(f"Infeasible (precedence violated {jj}@{sol[jj]}->{ss}@{sol[ss]}).")
+                return
 
 if __name__ == "__main__":
     logger.remove()
-    if len(sys.argv) != 2:
-        print("Usage: python3 feas_check_rcpsp.py <output directory>")
+    if len(sys.argv) == 2:
+        check_feas_dir(sys.argv[1])
+    elif len(sys.argv) == 3:
+        check_feas_single(sys.argv[1], eval(sys.argv[2]))
+    else:
+        print("Usage: python3 feas_check_rcpsp.py (<output directory> | <instance> <solution list as pairs>")
         sys.exit(1)
-    check_feas(sys.argv[1])
 
