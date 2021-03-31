@@ -31,6 +31,7 @@ def main():
     parser.add_argument('-s', '--seed', type=int, default=-1, help='Random seed (default = -1, meaning no seed given)')
     parser.add_argument('--tuner', action='store_true', default=False, help='Enable tuning mode; no output will be printed to stdout except for ')
     parser.add_argument('--ignore', type=str, default="", help='Used for tuning, just ignore it.')
+    parser.add_argument('--truncate_final', action='store_true', default=False, help='Truncates the final solution provided to an integer. Useful when using a modified objective function that shouldn\'t be output to the tuner or a user.')
 
     args, unparsed_args = parser.parse_known_args(sys.argv[1:])
 
@@ -85,6 +86,8 @@ def main():
 
     try:
         best_val, best = grka(solver)
+        if args.truncate_final:
+            best_val = int(best_val)
     except Exception as ee:
         if args.tuner:
             print(f"GGA CRASHED 9999")
