@@ -11,7 +11,7 @@ from scipy.stats import gmean
 import traceback
 from collections import defaultdict
 
-bof = re.compile(r'^.*/\d+_(j\d+_\d+)\.sm\.out\.gz:.*grka:main:\d+ - Best objective found: (\d+\.\d*)$')
+bof = re.compile(r'^.*/\d+_(j\d+_\d+)\.sm\.out\.gz:.*grka:main:\d+ - Best objective found: (\d+\.?\d*)$')
 fname = re.compile(r'^.*/\d+_(j\d+_\d+)\.sm\.out\.gz$')
 
 def analyze(inst_file, ddir):
@@ -29,6 +29,8 @@ def analyze(inst_file, ddir):
 #             res['seed'].append(seed)
             res['objective'].append(obj)
             found[inst] = True
+        else:
+            print(f"No match: {ll}")
     with open(inst_file, 'r') as fp:
         lines = [line.strip() for line in fp]
     if len(lines) != len(res):
