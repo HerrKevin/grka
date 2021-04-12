@@ -8,7 +8,7 @@ import re
 import pandas as pd
 import traceback
 
-csv_re = re.compile(r'^\d+_(train|test)_rcpsp_(j\d+)_(mod)?_?(.+)_(default|best)/?$')
+csv_re = re.compile(r'^\d+_(train|test)_(:?rcpsp_)(j\d+)_(mod)?_?(.+)_(default|best)/?$')
 
 def analyze_all(igrp, gstr):
     df_all = None
@@ -41,7 +41,7 @@ def analyze_all(igrp, gstr):
                 if df_all is None:
                     df_all = df
                 else:
-                    df_all = df_all.append(df)
+                    df_all = df_all.append(df, ignore_index=True)
             else:
                 print(f"Failed to parse: {bname}")
     return df_all
@@ -53,8 +53,12 @@ if __name__ == "__main__":
     igrp = sys.argv[1]
     gstr = sys.argv[2]
     df_all = analyze_all(igrp, f"../tuning/benchmark/rcpsp/{gstr}")
+    print(len(df_all))
+    df_all.reset_index()
+    print(df_all)
     if df_all is not None:
         repstr = gstr.replace("/","") # don't use anything more complicated than this...
-        repstr = gstr.replace("*","") # don't use anything more complicated than this...
+        repstr = repstr.replace("*","") # don't use anything more complicated than this...
+        print(f"Output to: ../tuning/benchmark/rcpsp/aggregated/agg_{repstr}.csv.gz")
         df_all.to_csv(f"../tuning/benchmark/rcpsp/aggregated/agg_{repstr}.csv.gz")
 

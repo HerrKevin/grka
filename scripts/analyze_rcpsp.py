@@ -22,7 +22,7 @@ def analyze(inst_file, ddir):
         mm = bof.match(ll)
         if mm:
             gg = mm.groups()
-            inst = int(gg[0])
+            inst = gg[0]
 #             seed = int(gg[2])
             obj = float(gg[1])
             res['instance'].append(inst)
