@@ -8,7 +8,7 @@ import re
 import pandas as pd
 import traceback
 
-csv_re = re.compile(r'^\d+_(train|test)_(:?rcpsp_)?(j\d+)_(mod)?_?(.+)_(default|best)/?$')
+csv_re = re.compile(r'^\d+_(train|test)_(?:rcpsp_)?(j\d+)_(mod)?_?(.+)_(default|best)/?$')
 
 def analyze_all(igrp, gstr):
     df_all = None
@@ -37,7 +37,7 @@ def analyze_all(igrp, gstr):
                 gg = mm.groups()
                 df['train_test'] = gg[0]
                 df['inst_group'] = gg[1]
-                df['solver'] = gg[2]
+                df['solver'] = gg[-2]
                 if df_all is None:
                     df_all = df
                 else:
