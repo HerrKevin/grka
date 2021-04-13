@@ -8,7 +8,7 @@ import re
 import pandas as pd
 import traceback
 
-csv_re = re.compile(r'^\d+_(train|test)_(:?rcpsp_)(j\d+)_(mod)?_?(.+)_(default|best)/?$')
+csv_re = re.compile(r'^\d+_(train|test)_(:?rcpsp_)?(j\d+)_(mod)?_?(.+)_(default|best)/?$')
 
 def analyze_all(igrp, gstr):
     df_all = None
