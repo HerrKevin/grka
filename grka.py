@@ -21,7 +21,7 @@ def grka(solver):
 
 def main():
     parser = argparse.ArgumentParser(description='Generalized Random-Key Algorithm')
-    parser.add_argument('problem', choices=['roro', 'func', 'dap', 'rcpsp', 'cvrp'], help='Problem type to solve')
+    parser.add_argument('problem', choices=['roro', 'func', 'dap', 'rcpsp', 'cvrp', 'scs'], help='Problem type to solve')
     parser.add_argument('instance', type=str, help='Instance path')
     parser.add_argument('--solver', choices=['de', 'brkga', 'pso', 'hcpso', 'cmaes', 'ds', 'random', 'ade'], default='cmaes', help='Solver to use to solve the problem')
     parser.add_argument('--max_cpu', type=float, default=1e99, help='Maximum CPU time in seconds')

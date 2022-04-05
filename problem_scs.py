@@ -29,6 +29,7 @@ def read_instance(inst_path):
         'tmax': 12,
         'jmax': 3,
         'smax': 3,
+        'rmax': 3, # per seafarer
         'jsegs': 3,
         'pd': 6,
         'pw': 20,
@@ -50,7 +51,7 @@ def read_instance(inst_path):
 
 class scs(Problem):
     def __init__(self, args, inst):
-        #super().__init__(args, inst.nship + inst.nquay)
+        super().__init__(args, inst.smax * inst.rmax)
         self.inst = inst
 
     def batch_evaluate(self, keys, threads=1, print_sol=False):
@@ -61,7 +62,7 @@ class scs(Problem):
             objs[ii] = self.assign_jobs(kk, print_sol)[0]
         return objs
 
-    def assign_jobs(self, key):
+    def assign_jobs(self, key, print_sol=False): # TODO impl print_sol
         """
         key structure: (TODO might need # of rests)
             1. Start of rest 1 [0,1] -> [0, tmax]
@@ -93,6 +94,7 @@ class scs(Problem):
         xri = {}
         xrp = {}
         yji = {}
+        ssrt = {} # rest subtraction for rest[s,r] with time window ending at t
         zs = {}
 
 
@@ -113,12 +115,15 @@ class scs(Problem):
         for ss in range(pp.smax):
             for rr in range(nrests):
                 # Rests
-                xrs[ss, rr] = model.NewIntVar(rstarts[ss,rr], rstarts[ss,rr], f'xrs_{ss}_{rr}')
-                xre[ss, rr] = model.NewIntVar(rstarts[ss,rr], pp.tmax + 1, f'xre_{ss}_{rr}')
+                xrs[ss, rr] = model.NewIntVar(rstarts[ss, rr], rstarts[ss, rr], f'xrs_{ss}_{rr}')
+                xre[ss, rr] = model.NewIntVar(rstarts[ss, rr], pp.tmax + 1, f'xre_{ss}_{rr}')
                 xrd[ss, rr] = model.NewIntVar(0, pp.tmax - rstarts[ss,rr], f'xrd_{ss}_{rr}')
                 xrp[ss, rr] = model.NewBoolVar(f'xrp_{ss}_{rr}')
                 xri[ss, rr] = model.NewOptionalIntervalVar(xrs[ss, rr], xrd[ss, rr],
                                                            xre[ss, rr], xrp[ss, rr], f'xri_{ss}_{rr}')
+
+                for tt in range(rstarts[ss, rr], pp.tmax):
+                    ssrt[ss, rr, tt] = model.NewIntVar(0, pp.tmax - tt, f'ssrt_{ss}_{rr}_{tt}')
 
         # Covered now by adding an extra 0 start rest
         # # One extra rest for each seafarer at time 0, if necessary
@@ -173,10 +178,16 @@ class scs(Problem):
                     model.Add(xje[ss, jj, ii] < xjs[ss, jj, ii+1]).OnlyEnforceIf(xjp[ss, jj, ii+1])
 
         # Rolling window rests (md/mw)
+        for ((ss, rr, tt), svar) in ssrt.items():
+            model.Add(svar >= 0).OnlyEnforceIf(xrp[ss, rr])
+            model.Add(svar >= xre[ss, rr] - tt).OnlyEnforceIf(xrp[ss, rr])
+        # Note: ssrt will never be made bigger than it needs to be since this
+        # can only reduce the objective function value
+
         for ss in range(pp.smax):
             for tt in range(pp.tmax - pp.pd):
                 # TODO have to handle the fact that the duration could exceed tt+md
-                rel_rests = [xrd[ss, rr] for (rr, rs) in enumerate(rstarts[ss]) if rs >= tt and rs < tt + pp.pd]
+                rel_rests = [xrd[ss, rr] - ssrt[ss, rr, max(pp.tmax - 1, tt + pp.pd)] for (rr, rs) in enumerate(rstarts[ss]) if rs >= tt and rs < tt + pp.pd]
                 debug = [(rr, rs) for (rr, rs) in enumerate(rstarts[ss]) if rs >= tt and rs < tt + pp.pd]
                 # print(f"{ss}-{tt}: {debug} >= {pp.md}")
                 if rel_rests:
@@ -191,52 +202,56 @@ class scs(Problem):
         model.Minimize(sum(zs[ss] for ss in range(pp.smax)))
 
         solver = cp_model.CpSolver()
+        solver.parameters.max_time_in_seconds = 10.0
         solver.parameters.linearization_level = 0
         status = solver.Solve(model)
 
+        penobj = 10000
+        asgn = np.zeros((pp.smax, pp.tmax), dtype=int)
         if status == cp_model.OPTIMAL:
             obj = sum(solver.Value(zs[ss]) for ss in range(pp.smax))
-            print(f"Optimal solution found (obj: {obj}; penalized: {obj+penalty})")
-            asgn = np.zeros((pp.smax, pp.tmax), dtype=int)
+            penobj = obj + penalty
+            # print(f"Optimal solution found (obj: {obj}; penalized: {obj+penalty})")
             for jj in range(pp.jmax):
-                print(f"Job {jj+1}: ", end="")
+                # print(f"Job {jj+1}: ", end="")
                 for ss in pp.js[jj]:
                     for ii in range(pp.jsegs):
                         vs = solver.Value(xjs[ss, jj, ii])
                         ve = solver.Value(xje[ss, jj, ii])
                         if solver.Value(xjp[ss, jj, ii]):
                             #print(f"s{ss}i_{ii}({vs},{ve},{solver.Value(xjd[ss,jj,ii])}) ", end="")
-                            print(f"s{ss}i_{ii}({vs},{ve}) ", end="")
+                            # print(f"s{ss}i_{ii}({vs},{ve}) ", end="")
                             for dd in range(solver.Value(xjd[ss, jj, ii])):
                                 asgn[ss, vs + dd] = jj + 1
-                print()
-            print()
-            print()
-            for ss in range(pp.smax):
-                print(f"Seafarer {ss}: ", end="")
-                for tt in range(pp.tmax):
-                    val = asgn[ss, tt]
-                    if val >= 10:
-                        val = chr(ord('A') + (val - 10))
-                    print(val, end="")
-                print()
+                # print()
+            # print()
+            # print()
+            # for ss in range(pp.smax):
+                # print(f"Seafarer {ss}: ", end="")
+                # for tt in range(pp.tmax):
+                #     val = asgn[ss, tt]
+                #     if val >= 10:
+                #         val = chr(ord('A') + (val - 10))
+                #     print(val, end="")
+                # print()
 
 
-        elif status == INFEASIBLE:
-            print(f"Model declared infeasible")
-        elif status == FEASIBLE:
-            print("Feasible, but not optimal. TODO")
-        elif status == UNKNOWN:
-            print("Couldn't find a feasible solution")
-        else:
-            print("Model invalid")
+        # elif status == INFEASIBLE:
+        #     print(f"Model declared infeasible")
+        # elif status == FEASIBLE:
+        #     print("Feasible, but not optimal. TODO")
+        # elif status == UNKNOWN:
+        #     print("Couldn't find a feasible solution")
+        # else:
+        #     print("Model invalid")
 
         # Statistics.
-        print('\nStatistics')
-        print(f'  - conflicts      : {solver.NumConflicts()}')
-        print(f'  - branches       : {solver.NumBranches()}')
-        print(f'  - wall time      : {solver.WallTime():.2f} s')
+        # print('\nStatistics')
+        # print(f'  - conflicts      : {solver.NumConflicts()}')
+        # print(f'  - branches       : {solver.NumBranches()}')
+        # print(f'  - wall time      : {solver.WallTime():.2f} s')
         #print(f'  - solutions found: {solution_printer.solution_count()}' % )
+        return (penobj, asgn)
 
 
 if __name__ == "__main__":
