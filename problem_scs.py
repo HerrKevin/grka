@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 
 from loguru import logger
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import numpy as np
 import sys
+from typing import List
+import re
+import numpy as np
 
 from ortools.sat.python import cp_model
 from types import SimpleNamespace
@@ -22,32 +25,122 @@ def add_parser_args(parser):
     # TODO
     # parser.add_argument('--tugs', type=int, default=2, help='Number of tugs to use')
 
+@dataclass
+class ScsInstance(object):
+    tmax: int = 0
+    jmax: int = 0
+    smax: int = 0
+    rmax: int = 0
+    jsegs: int = 0
+    pd: int = 0
+    pw: int = 0
+    mmin: int = 0
+    mc: int = 0
+    md: int = 0
+    mw: int = 0
+    aj: int = 0
+    ej: int = 0
+    dj: int = 0
+    js: List[List[int]] = field(default_factory=lambda: [])
+
+qre = re.compile(r'^.*\s*\{((\d+,?\s*)+)\},?\]?;?$')
+
+def extract(ll):
+    mm = qre.match(ll)
+    return [int(ii) - 1 for ii in mm.groups()[0].split()]
 
 def read_instance(inst_path):
-    # TODO dataclass after read in
-    params_ = {
-        'tmax': 12,
-        'jmax': 3,
-        'smax': 3,
-        'rmax': 3, # per seafarer
-        'jsegs': 3,
-        'pd': 6,
-        'pw': 20,
-        'mmin': 2,
-        'mc': 3,
-        'md': 3,
-        'mw': 7,
-        'aj': [5, 1, 1],
-        'ej': [12, 6, 12],
-        'dj': [5, 5, 4],
-        'js': [[0, 1, 2], [0, 1], [1, 2]] # for each job, which seafarers can do it
-    }
-    return SimpleNamespace(**params_)
+    inst = ScsInstance()
 
+    task_begin = []
+    task_end = []
+    task_duration = []
+    qualified = []
+    ll = None
+    te = False
+    tb = False
+    td = False
+    qual = False
+    with open(inst_path, 'r') as fp:
+        for line in fp:
+            sl = line.strip().replace(';', '')
+            if '=' in line:
+                sp = sl.split('=')
+                sp0 = sp[0].strip()
+                if sp0 == 'NoTimeIntervals':
+                    inst.tmax = int(sp[1])
+                elif sp0 == 'NoSeafarers':
+                    inst.smax = int(sp[1])
+                elif sp0 == 'TaskBegin':
+                    tb = True
+                    task_begin.append(int(sp[1].split('[')[1]))
+                    ll = task_begin
+                elif sp0 == 'TaskEnd':
+                    te = True
+                    task_end.append(int(sp[1].split('[')[1]))
+                    ll = task_end
+                elif sp0 == 'TaskDuration':
+                    td = True
+                    task_duration.append(int(sp[1].split('[')[1]))
+                    ll = task_duration
+                elif sp0 == 'Qualified':
+                    qual = True
+                    qualified.append(extract(sl))
+                elif sp0 == 'Day':
+                    day = int(sp[1])
+                elif sp0 == 'Week':
+                    week = int(sp[1])
+                elif sp0 == 'MinRestLength':
+                    mrl = int(sp[1])
+                elif sp0 == 'LongRestRequirement':
+                    lrr = int(sp[1])
+                elif sp0 == 'DayRestRequirement':
+                    drr = int(sp[1])
+                elif sp0 == 'WeekRestRequirement':
+                    wrr = int(sp[1])
+            elif sl.startswith(']'):
+                tb = False
+                te = False
+                td = False
+                qual = False
+                ll = None
+            elif ll is not None and (tb or te or td):
+                if ']' in sl:
+                    ll.append(int(sl[:-1]))
+                    tb = False
+                    te = False
+                    td = False
+                    ll = None
+                else:
+                    ll.append(int(sl))
+            elif qual:
+                qualified.append(extract(sl))
 
-# @dataclass
-# class Instance(Object):
+    inst.jmax = len(task_begin)
+    # re arrange qual matrix from J -> S to S -> J
+#     squal = [[] for ss in range(inst.smax)]
+#     for jj in range(inst.jmax):
+#         for sq in qualified[jj]:
+#             squal[sq-1].append(jj + 1)
 
+#     max_squal = max([len(qq) for qq in squal]) + 1
+    max_jqual = max([len(jj) for jj in qualified]) + 1
+
+    inst.pd = day
+    inst.pw = week
+    inst.mmin = mrl
+    inst.mc = lrr
+    inst.md = drr
+    inst.mw = wrr
+    inst.aj = [ii - 1 for ii in task_begin]
+    inst.ej = [ii - 1 for ii in task_end]
+    inst.dj = [ii - 1 for ii in task_duration]
+    inst.js = qualified
+
+    inst.jsegs = 3 # TODO probably hast to be job specific
+    inst.rmax = int(2 * (inst.tmax / inst.md))
+
+    return inst
 
 class scs(Problem):
     def __init__(self, args, inst):
@@ -201,17 +294,19 @@ class scs(Problem):
 
         model.Minimize(sum(zs[ss] for ss in range(pp.smax)))
 
+        print("starting solve")
         solver = cp_model.CpSolver()
-        solver.parameters.max_time_in_seconds = 10.0
+#         solver.parameters.max_time_in_seconds = 10.0
         solver.parameters.linearization_level = 0
         status = solver.Solve(model)
+        print(f"ending solve {status}")
 
-        penobj = 10000
+        penobj = pp.smax * 3
         asgn = np.zeros((pp.smax, pp.tmax), dtype=int)
-        if status == cp_model.OPTIMAL:
+        if status == cp_model.OPTIMAL or status == FEASIBLE:
             obj = sum(solver.Value(zs[ss]) for ss in range(pp.smax))
             penobj = obj + penalty
-            # print(f"Optimal solution found (obj: {obj}; penalized: {obj+penalty})")
+            print(f"Solution found (obj: {obj}; penalized: {obj+penalty})")
             for jj in range(pp.jmax):
                 # print(f"Job {jj+1}: ", end="")
                 for ss in pp.js[jj]:
@@ -236,14 +331,12 @@ class scs(Problem):
                 # print()
 
 
-        # elif status == INFEASIBLE:
-        #     print(f"Model declared infeasible")
-        # elif status == FEASIBLE:
-        #     print("Feasible, but not optimal. TODO")
-        # elif status == UNKNOWN:
-        #     print("Couldn't find a feasible solution")
-        # else:
-        #     print("Model invalid")
+        elif status == INFEASIBLE:
+            print(f"Model declared infeasible")
+        elif status == UNKNOWN:
+            print("Couldn't find a feasible solution")
+        else:
+            print("Model invalid")
 
         # Statistics.
         # print('\nStatistics')
@@ -255,8 +348,9 @@ class scs(Problem):
 
 
 if __name__ == "__main__":
-    ss = scs(None, read_instance(None))
-    key = np.array([0.25, 0.5, 0.7,0.25, 0.5, 0.7, 0.25, 0.5, 0.7])
+    ss = scs(None, read_instance('../ship_crew_scheduling/data/2019_08_21_TestDaten.dat'))
+    lsp = np.linspace(0.1, 0.9, 5).tolist()
+    key = np.array(lsp * ss.inst.smax)
     ss.assign_jobs(key)
 
 
