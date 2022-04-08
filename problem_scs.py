@@ -137,7 +137,7 @@ def read_instance(inst_path):
     inst.dj = [ii - 1 for ii in task_duration]
     inst.js = qualified
 
-    inst.jsegs = 3 # TODO probably hast to be job specific
+    inst.jsegs = [inst.dj[jj] for jj in range(inst.jmax)]
     inst.rmax = int(2 * (inst.tmax / inst.md))
 
     return inst
@@ -170,6 +170,7 @@ class scs(Problem):
         penalty = 0
 
         nrests = len(key) // pp.smax
+        # prepend a 0 to the key, always have the option of resting at the start
         rstarts_ = np.around(key * pp.tmax, 0).astype(int)
         rstarts = np.reshape(rstarts_, (pp.smax, nrests))
         rstarts = np.hstack([np.zeros(pp.smax, dtype=int)[:,None], rstarts])
@@ -196,7 +197,7 @@ class scs(Problem):
 
         for jj in range(pp.jmax):
             for ss in pp.js[jj]:
-                for ii in range(pp.jsegs):
+                for ii in range(pp.jsegs[jj]):
                     # Jobs
                     xjs[ss, jj, ii] = model.NewIntVar(pp.aj[jj], pp.ej[jj], f'xjs_{ss}_{jj}_{ii}')
                     xje[ss, jj, ii] = model.NewIntVar(pp.aj[jj], pp.ej[jj], f'xje_{ss}_{jj}_{ii}')
@@ -231,24 +232,24 @@ class scs(Problem):
 
         # Constraints 5a: no overlapping segments of a given job
         for jj in range(pp.jmax):
-            job_segs = [xji[ss, jj,ii] for ss in pp.js[jj] for ii in range(pp.jsegs)]
+            job_segs = [xji[ss, jj,ii] for ss in pp.js[jj] for ii in range(pp.jsegs[jj])]
             model.AddNoOverlap(job_segs)
 
         # Constraints 5b: no overlapping segments for a given seafarer
         for ss in range(pp.smax):
-            job_segs = [xji[ss, jj, ii] for jj in range(pp.jmax) for ii in range(pp.jsegs) if ss in pp.js[jj]]
+            job_segs = [xji[ss, jj, ii] for jj in range(pp.jmax) for ii in range(pp.jsegs[jj]) if ss in pp.js[jj]]
             rest_segs = [xri[ss, rr] for rr in range(nrests)]
             model.AddNoOverlap(job_segs + rest_segs)
 
         # Constraints 7
         for jj in range(pp.jmax):
-            model.Add(sum(xjd[ss, jj, ii] for ss in pp.js[jj] for ii in range(pp.jsegs))
+            model.Add(sum(xjd[ss, jj, ii] for ss in pp.js[jj] for ii in range(pp.jsegs[jj]))
                     == pp.dj[jj])
 
         # Interval present if duration is non-zero
         for jj in range(pp.jmax):
             for ss in pp.js[jj]:
-                for ii in range(pp.jsegs):
+                for ii in range(pp.jsegs[jj]):
                     model.Add(xjd[ss, jj, ii] == 0).OnlyEnforceIf(xjp[ss, jj, ii].Not())
                     model.Add(xjd[ss, jj, ii] > 0).OnlyEnforceIf(xjp[ss, jj, ii])
 
@@ -259,12 +260,12 @@ class scs(Problem):
 
         # Connect seafarer on/off to their jobs
         for ss in range(pp.smax):
-            model.Add(sum(xjp[ss, jj, ii] for jj in range(pp.jmax) for ii in range(pp.jsegs) if ss in pp.js[jj]) == 0).OnlyEnforceIf(zs[ss].Not())
+            model.Add(sum(xjp[ss, jj, ii] for jj in range(pp.jmax) for ii in range(pp.jsegs[jj]) if ss in pp.js[jj]) == 0).OnlyEnforceIf(zs[ss].Not())
 
         # Symmetry breaking on the segments
         for jj in range(pp.jmax):
             for ss in pp.js[jj]:
-                for ii in range(pp.jsegs - 1):
+                for ii in range(pp.jsegs[jj] - 1):
                     # If segment i is not used, then neither is segment i+1
                     model.Add(xjp[ss, jj, ii+1] == 0).OnlyEnforceIf(xjp[ss, jj, ii].Not())
                     # Segment ordering only enforced if the second segment is turned on
@@ -281,8 +282,8 @@ class scs(Problem):
             for tt in range(pp.tmax - pp.pd):
                 # TODO have to handle the fact that the duration could exceed tt+md
                 rel_rests = [xrd[ss, rr] - ssrt[ss, rr, max(pp.tmax - 1, tt + pp.pd)] for (rr, rs) in enumerate(rstarts[ss]) if rs >= tt and rs < tt + pp.pd]
+                # rel_rests = [xrd[ss, rr] for (rr, rs) in enumerate(rstarts[ss]) if rs >= tt and rs < tt + pp.pd]
                 debug = [(rr, rs) for (rr, rs) in enumerate(rstarts[ss]) if rs >= tt and rs < tt + pp.pd]
-                # print(f"{ss}-{tt}: {debug} >= {pp.md}")
                 if rel_rests:
                     model.Add(sum(rel_rests) >= pp.md)
                 else:
@@ -290,16 +291,17 @@ class scs(Problem):
 
         # Rests are at least mmin time units long
         for key, _ in xrd.items():
-            model.Add(xrd[key] >= 2).OnlyEnforceIf(xrp[key])
+            if key[1] != 0:
+                model.Add(xrd[key] >= 2).OnlyEnforceIf(xrp[key])
 
         model.Minimize(sum(zs[ss] for ss in range(pp.smax)))
 
-        print("starting solve")
+        # print("starting solve")
         solver = cp_model.CpSolver()
-#         solver.parameters.max_time_in_seconds = 10.0
+        solver.parameters.max_time_in_seconds = 10.0
         solver.parameters.linearization_level = 0
         status = solver.Solve(model)
-        print(f"ending solve {status}")
+        # print(f"ending solve {status}")
 
         penobj = pp.smax * 3
         asgn = np.zeros((pp.smax, pp.tmax), dtype=int)
@@ -310,7 +312,7 @@ class scs(Problem):
             for jj in range(pp.jmax):
                 # print(f"Job {jj+1}: ", end="")
                 for ss in pp.js[jj]:
-                    for ii in range(pp.jsegs):
+                    for ii in range(pp.jsegs[jj]):
                         vs = solver.Value(xjs[ss, jj, ii])
                         ve = solver.Value(xje[ss, jj, ii])
                         if solver.Value(xjp[ss, jj, ii]):
@@ -322,21 +324,21 @@ class scs(Problem):
             # print()
             # print()
             # for ss in range(pp.smax):
-                # print(f"Seafarer {ss}: ", end="")
-                # for tt in range(pp.tmax):
-                #     val = asgn[ss, tt]
-                #     if val >= 10:
-                #         val = chr(ord('A') + (val - 10))
-                #     print(val, end="")
-                # print()
+            #     print(f"Seafarer {ss}: ", end="")
+            #     for tt in range(pp.tmax):
+            #         val = asgn[ss, tt]
+            #         if val >= 10:
+            #             val = chr(ord('A') + (val - 10))
+            #         print(val, end="")
+            #     print()
 
 
-        elif status == INFEASIBLE:
-            print(f"Model declared infeasible")
-        elif status == UNKNOWN:
-            print("Couldn't find a feasible solution")
-        else:
-            print("Model invalid")
+        # elif status == INFEASIBLE:
+        #     print(f"Model declared infeasible")
+        # elif status == UNKNOWN:
+        #     print("Couldn't find a feasible solution")
+        # else:
+        #     print("Model invalid")
 
         # Statistics.
         # print('\nStatistics')
@@ -349,7 +351,10 @@ class scs(Problem):
 
 if __name__ == "__main__":
     ss = scs(None, read_instance('../ship_crew_scheduling/data/2019_08_21_TestDaten.dat'))
-    lsp = np.linspace(0.1, 0.9, 5).tolist()
+    # ss = scs(None, read_instance('../ship_crew_scheduling/data/small.dat'))
+    print(ss.inst.md)
+    print(ss.inst.pd)
+    lsp = np.linspace(0.1, 0.9, 25).tolist()
     key = np.array(lsp * ss.inst.smax)
     ss.assign_jobs(key)
 
